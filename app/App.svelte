@@ -9,19 +9,14 @@
    
 
 <style>
-    .info .fas {
-        color: #3A53FF;
-    }
-    .info {
-        font-size: 20;
-    }
+    
 </style>
 
 
 <page>
 <stackLayout paddingBottom ="80">
-   <label text="Achieve" fontSize="70" horizontalAlignment="center" color ="white" >
+   <label text="Achieve" fontSize="70" horizontalAlignment="center" color ="white" />
    <image src="~/Images/trophy.png" />
-   <button on:tap="{() =>navigate({page: First})}" text="Start"></button>
+   <button on:tap="{() =>navigate({page: First})}" text="Start" ></button>
 </stackLayout>
 </page>
