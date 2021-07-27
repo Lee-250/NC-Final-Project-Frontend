@@ -1,18 +1,12 @@
-<page>
-    <actionBar title="Svelte Native App" />
-    <gridLayout>
-        <label class="info" horizontalAlignment="center" verticalAlignment="middle" textWrap="true">
-            <formattedString>
-                <span class="fas" text="&#xf135;" />
-                <span text=" {message}" />
-            </formattedString>
-        </label>
-    </gridLayout>
-</page>
-
 <script lang="typescript">
-    let message: string = "Blank Svelte Native App"
+        
+    import First from "./Pages/First.svelte";
+    
+    import {navigate} from "svelte-native";
+    
+    let message: string = "Blank Svelte Native App";
 </script>
+   
 
 <style>
     .info .fas {
@@ -22,3 +16,12 @@
         font-size: 20;
     }
 </style>
+
+
+<page>
+<stackLayout paddingBottom ="80">
+   <label text="Achieve" fontSize="70" horizontalAlignment="center" color ="white" >
+   <image src="~/Images/trophy.png" />
+   <button on:tap="{() =>navigate({page: First})}" text="Start"></button>
+</stackLayout>
+</page>
