@@ -1,5 +1,5 @@
 <script lang="typescript">
-  import SetupComplete from "./Pages/SetupComplete.svelte";
+  import Start from "./Pages/Start.svelte";
 
   import { navigate } from "svelte-native";
 
@@ -15,7 +15,7 @@
       color="white"
     />
     <image src="~/Images/trophy.png" />
-    <button on:tap={() => navigate({ page: SetupComplete })} text="Start" />
+    <button on:tap={() => navigate({ page: Start })} text="Start" />
   </stackLayout>
 </page>
 
