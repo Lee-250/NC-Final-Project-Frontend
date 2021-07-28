@@ -3,6 +3,7 @@
  let updates: { user: string, post: string }[] = [{user: 'Chris', post: 'Quick 5 miles'},{user: 'John', post: 'Big ride planned this weekend!!'}]
 
  let newUpdate: { user: string, post: string } = {user: 'Lee', post: 'Lets go!'};
+ let post: string = "";
 
  const addUpdate = () => {
     updates = [...updates, newUpdate]
@@ -33,7 +34,8 @@
     <gridLayout columns="3*, *" class="progressbar">
         <stackLayout col="0" class="progressbar-value"></stackLayout>
       </gridLayout>
-      <textField hint="post an update"></textField>
+      <textField bind:text="{newUpdate.post}" hint="post an update"></textField>
+      <!-- test -->
       <button on:tap="{addUpdate}"text="Post"></button>
     <listView height="200" items="{updates}">
     <Template let:item>
