@@ -1,6 +1,7 @@
 <script lang="typescript">
 import Info from "./Info.svelte";
 import {navigate} from "svelte-native";
+import GoalPage from "./GoalPage.svelte";
 </script>
 
 <style>
@@ -17,6 +18,6 @@ import {navigate} from "svelte-native";
             <textField class="input" hint="email"></textField>
             <textField class="input" hint="username"></textField>
             <textField class="input" hint="password"></textField>
-            <button text="Start" ></button>
+            <button on:tap={() => navigate({ page: GoalPage })} text="Start" ></button>
     </stackLayout>
 </page>
