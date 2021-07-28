@@ -1,5 +1,8 @@
 <script lang="typescript">
-  const items = ["one", "two", "three"] 
+  import { navigate } from "svelte-native";
+  import SetupComplete from "./SetupComplete.svelte"
+
+  const items = ["Health", "Fitness", "Skill", "Social", "Career"] 
 </script>
 
 <style>
@@ -22,5 +25,6 @@
     <textField hint="eg. cycle 30 miles per week"></textField>
     <label text="Goal date"></label>
     <datePicker></datePicker>
+    <button text="create goal" on:tap="{()=>navigate({page: SetupComplete})}"></button>
   </stackLayout>
 </page>
