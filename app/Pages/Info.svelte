@@ -25,7 +25,7 @@
       autocapitalizationType="none"
     />
     <textField class="input input-border" secure="true" hint="Password" />
-    <button text="Register" />
+    <button text="Register" on:tap="{()=> navigate({page : Goal})}"/>
   </stackLayout>
 </page>
 

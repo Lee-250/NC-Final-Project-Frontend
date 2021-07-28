@@ -25,6 +25,6 @@
     <textField hint="eg. cycle 30 miles per week"></textField>
     <label text="Goal date"></label>
     <datePicker></datePicker>
-    <button text="create goal" on:tap="{()=>navigate({page: SetupComplete})}"></button>
+    <button text="create goal" on:tap="{()=> navigate({page : SetupComplete})}"></button>
   </stackLayout>
 </page>
