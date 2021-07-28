@@ -1,6 +1,7 @@
 <script lang="typescript">
   // import Goalpage from "./Goalpage.svelte";
-  // import {navigate} from "svelte-native";
+  import {navigate} from "svelte-native";
+import GoalPage from "./GoalPage.svelte";
 </script>
 
 <page>
@@ -20,7 +21,7 @@
       textWrap="true"
     />
 
-    <button text="Go to Homepage" />
+    <button on:tap={() => navigate({ page: GoalPage })} text="Go to Homepage" />
   </stackLayout>
 </page>
 
