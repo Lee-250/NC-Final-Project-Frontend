@@ -1,9 +1,13 @@
 <script lang="typescript">
-  // import Goal from "./Goal.svelte";
-  // import {navigate} from "svelte-native";
+
+    import Goal from "./Goal.svelte"
+    import {navigate} from "svelte-native"
+
+
 </script>
 
 <page>
+
   <stackLayout>
     <label fontSize="35" text="How does it work?" />
     <label color="white" text="Create a goal" />
@@ -27,3 +31,4 @@
 
 <style>
 </style>
+
