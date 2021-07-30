@@ -1,4 +1,5 @@
 <script lang="typescript"> 
+
 import { BottomNavigation, StackLayout, TabStripItem } from '@nativescript/core';
 import { dateProperty } from '@nativescript/core/ui/date-picker';
 import axios from 'axios/dist/axios';
@@ -8,7 +9,7 @@ import {Template} from 'svelte-native/components';
  let updates: { user: string, post: string }[] = [{user: 'Lee', post: 'Just got back from a 450 mile ride, too easy'}, {user: 'Harry', post: 'I love bikes me'}, {user: 'Chris', post: 'Quick 5 miles'},{user: 'John', post: 'Big ride planned this weekend!!'}]
 
  let newPost: { user: string, post: string } = {user: 'Lee', post: ''};
- 
+
 //  const testApi = axios.create({baseURL: "https://mygames-api.herokuapp.com/api"});
 
  const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app"})
@@ -21,6 +22,7 @@ let feed = [];
          feed = data;
     
 })
+
 
 
 
@@ -52,6 +54,7 @@ let feed = [];
 </style>
 
 <page>
+
     <stackLayout>
         <bottomNavigation>
             <tabStrip>
@@ -86,5 +89,6 @@ let feed = [];
             </tabContentItem>
         </bottomNavigation>
         </stackLayout>
+
 
 </page>
