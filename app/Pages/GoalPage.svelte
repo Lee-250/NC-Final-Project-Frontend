@@ -8,7 +8,12 @@ import {Template} from 'svelte-native/components';
 import {showModal} from 'svelte-native';
 import ModalPage from './ModalPage.svelte';
 
- let updates: { user: string, post: string }[] = [{user: 'Lee', post: 'Just got back from a 450 mile ride, too easy'}, {user: 'Harry', post: 'I love bikes me'}, {user: 'Chris', post: 'Quick 5 miles'},{user: 'John', post: 'Big ride planned this weekend!!'}]
+let updates: { user: string, post: string, profilePic: string, picture: string }[] = [{
+         user: 'Lee', 
+         post: 'Just got back from a 450 mile ride, too easy', 
+        profilePic: "~/Images/blankProfilePic.png",
+        picture: 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1'},
+         {user: 'Harry', post: 'I love bikes me', profilePic: "~/Images/blankProfilePic.png", picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Floyd-landis-toctt.jpg/1200px-Floyd-landis-toctt.jpg'}, {user: 'Chris', post: 'Quick 5 miles', profilePic: "~/Images/blankProfilePic.png", picture: 'https://cdn.road.cc/sites/default/files/styles/main_width/public/irb1oxnwkljulmqul-ya1wpvbi5z3kjnoawnpi-kk-2048x1536.jpg' },{user: 'John', post: 'Big ride planned this weekend!!', profilePic: "~/Images/blankProfilePic.png", picture: 'https://media2.fdncms.com/sevendaysvt/imager/u/original/21581403/sports1-1-b8504bdcfa56c38a.jpg'}]
 
  let newPost: { user: string, post: string } = {user: 'Lee', post: ''};
 
@@ -59,8 +64,7 @@ async function openModal() {
 
 </style>
 
-<page>
-
+<page >
     <stackLayout>
         <bottomNavigation>
             <tabStrip>
@@ -71,30 +75,32 @@ async function openModal() {
                     <label text="Progress" />
                 </tabStripItem>
             </tabStrip>
-            <tabContentItem backgroundColor="#92cd92">
-                <stackLayout class="m-x-auto" backgroundColor="#E9FDE3">
-                    <label class="text-center" text="GoalPage" fontSize="50"/>
+            <tabContentItem >
+                <stackLayout backgroundColor="#92CD92" class="m-x-auto" >
+                    <label  class="text-left header" text="GoalPage" fontSize="20"/>
                     <gridLayout columns="3*, *" class="progressbar">
                         <stackLayout col="0" class="progressbar-value"></stackLayout>
                       </gridLayout>
-                      <!-- Need to make hint faded -->
-                      <textField bind:text="{newPost.post}" hint="post an update" ></textField>
                       <button on:tap="{openModal}"text="Post"></button>
-                      
-                      <!-- need to make height full screen -->
-                    <listView height="600" items="{feed}"> 
+                    <listView margin="10" backgroundColor="#E9FDE3"items="{updates}"> 
                     <Template let:item>
-                        <label text="{item.messageBody}" />
-                        
+                        <stackLayout >
+                            <gridLayout columns="50, 50" rows="*, *">
+                                <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
+                                <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                            </gridLayout>
+                            <stackLayout height="300">
+                                <label col="0" row="1" class="text-left" text="{item.post}" />
+                                <image src="{item.picture}"/>
+                            </stackLayout>
+                        </stackLayout>
                     </Template>
                     </listView>
                 </stackLayout>
             </tabContentItem>
-            <tabContentItem backgroundColor="#92cd92">
+            <tabContentItem>
                 <label text="progress" />
             </tabContentItem>
         </bottomNavigation>
         </stackLayout>
-
-
 </page>
