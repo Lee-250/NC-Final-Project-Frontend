@@ -17,6 +17,8 @@ let updates: { user: string, post: string, profilePic: string, picture: string }
 
  let newPost: { user: string, post: string } = {user: 'Lee', post: ''};
 
+ 
+
 //  const testApi = axios.create({baseURL: "https://mygames-api.herokuapp.com/api"});
 
  const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app"})
@@ -31,7 +33,7 @@ let feed = [];
 })
 
 async function openModal() {
-    await showModal({page: ModalPage});
+    await showModal({page: ModalPage, props: {message: 'test'}});
   }
 
 
@@ -82,6 +84,7 @@ async function openModal() {
                         <stackLayout col="0" class="progressbar-value"></stackLayout>
                       </gridLayout>
                       <button on:tap="{openModal}"text="Post"></button>
+                      
                     <listView margin="10" backgroundColor="#E9FDE3"items="{updates}"> 
                     <Template let:item>
                         <stackLayout >

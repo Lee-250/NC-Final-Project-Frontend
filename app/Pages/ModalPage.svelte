@@ -2,6 +2,12 @@
 const { closeModal }=require("svelte-native");
 
 const items = ["1 mile", "2 miles", "3 miles", "4 miles", "5 miles", "6 miles", "7 miles", "8 miles", "9 miles", "10 miles", "11 miles", "12 miles", "13 miles", "14 miles", "15 miles", "16 miles", "17 miles", "18 miles", "19 miles", "20 miles", "21 miles", "22 miles", "23 miles", "24 miles", "25 miles", "26 miles", "27 miles", "28 miles", "29 miles", "30 miles"]
+
+
+
+
+
+export let message;
 </script>
 
 <style>
@@ -20,11 +26,16 @@ const items = ["1 mile", "2 miles", "3 miles", "4 miles", "5 miles", "6 miles", 
     <stackLayout class="nt-input" flexDirection="column">
     <label text="Create a post" class="font-weight-bold m-b-5" textAlign="center" />
     <textField hint="post an update" class="-border"></textField>
+    
     <stackLayout />
     <stackLayout class="nt-input" flexDirection="column">
     <label text="Update your progress!" class="font-weight-bold m-b-5" textAlign="center" />
     <listPicker items="{items}" class="picker"></listPicker>
-    <button on:tap={closeModal} text="Submit" class="-primary"></button>
+
+    <label text="{message}"></label>
+
+
+    <button on:tap={() => closeModal('bananas')} text="Submit" class="-primary"></button>
     </stackLayout>
 </page>
 
