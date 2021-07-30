@@ -5,6 +5,8 @@ import { dateProperty } from '@nativescript/core/ui/date-picker';
 import axios from 'axios/dist/axios';
 import { onMount } from 'svelte';
 import {Template} from 'svelte-native/components';
+import {showModal} from 'svelte-native';
+import ModalPage from './ModalPage.svelte';
 
  let updates: { user: string, post: string }[] = [{user: 'Lee', post: 'Just got back from a 450 mile ride, too easy'}, {user: 'Harry', post: 'I love bikes me'}, {user: 'Chris', post: 'Quick 5 miles'},{user: 'John', post: 'Big ride planned this weekend!!'}]
 
@@ -22,6 +24,10 @@ let feed = [];
          feed = data;
     
 })
+
+async function openModal() {
+    await showModal({page: ModalPage});
+  }
 
 
 
@@ -73,7 +79,7 @@ let feed = [];
                       </gridLayout>
                       <!-- Need to make hint faded -->
                       <textField bind:text="{newPost.post}" hint="post an update" ></textField>
-                      <button on:tap="{addUpdate}"text="Post"></button>
+                      <button on:tap="{openModal}"text="Post"></button>
                       
                       <!-- need to make height full screen -->
                     <listView height="600" items="{feed}"> 
