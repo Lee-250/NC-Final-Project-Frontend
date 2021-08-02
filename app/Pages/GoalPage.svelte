@@ -23,29 +23,35 @@ let updates: { user: string, post: string, profilePic: string, picture: string }
 
  const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app"})
 
-let feed = [];
 
- onMount(async () => {
-     
-         const {data}  = await devApi.get('/feed')
-         feed = data;
-    
-})
+
+let newUpdate = {}
+
 
 async function openModal() {
-    await showModal({page: ModalPage, props: {message: 'test'}});
-  }
+    await showModal({page: ModalPage, props: {newUpdate: {}}});
+    console.log(newUpdate);
+}
 
 
 
 
 
-
- const addUpdate = ():void => {
-    updates = [{user: newPost.user, post: newPost.post}, ...updates];
-    newPost.post = '';
+// onMount(async () => {
     
- }
+//         const {data}  = await devApi.get('/feed')
+//         feed = data;
+   
+// })
+
+
+//  const addUpdate = ():void => {
+//     updates = [{user: newPost.user, post: newPost.post}, ...updates];
+//     newPost.post = '';
+    
+//  }
+
+ 
 
 
 </script>
@@ -80,9 +86,11 @@ async function openModal() {
             <tabContentItem >
                 <stackLayout backgroundColor="#92CD92" class="m-x-auto" >
                     <label  class="text-left header" text="GoalPage" fontSize="20"/>
+                    <label text="{updates[0].post}" />
                     <gridLayout columns="3*, *" class="progressbar">
                         <stackLayout col="0" class="progressbar-value"></stackLayout>
                       </gridLayout>
+                      
                       <button on:tap="{openModal}"text="Post"></button>
                       
                     <listView margin="10" backgroundColor="#E9FDE3"items="{updates}"> 
@@ -94,6 +102,7 @@ async function openModal() {
                             </gridLayout>
                             <stackLayout height="300">
                                 <label col="0" row="1" class="text-left" text="{item.post}" />
+                            
                                 <image src="{item.picture}"/>
                             </stackLayout>
                         </stackLayout>
