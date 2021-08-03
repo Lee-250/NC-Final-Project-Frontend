@@ -1,6 +1,7 @@
 <script lang="typescript">
 import { text } from "svelte/internal";
 
+
 const { closeModal }=require("svelte-native");
 
 const items = ["1 mile", "2 miles", "3 miles", "4 miles", "5 miles", "6 miles", "7 miles", "8 miles", "9 miles", "10 miles", "11 miles", "12 miles", "13 miles", "14 miles", "15 miles", "16 miles", "17 miles", "18 miles", "19 miles", "20 miles", "21 miles", "22 miles", "23 miles", "24 miles", "25 miles", "26 miles", "27 miles", "28 miles", "29 miles", "30 miles"]

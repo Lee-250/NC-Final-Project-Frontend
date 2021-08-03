@@ -2,21 +2,31 @@
 
 import { BottomNavigation, StackLayout, TabStripItem } from '@nativescript/core';
 import { dateProperty } from '@nativescript/core/ui/date-picker';
+import {navigate} from "svelte-native";
 import axios from 'axios/dist/axios';
 import { onMount } from 'svelte';
 import {Template} from 'svelte-native/components';
 import {showModal} from 'svelte-native';
-import ModalPage from './ModalPage.svelte';
+import PostModal from './PostModal.svelte';
 import { itemHeightProperty } from '@nativescript/core/ui/layouts/wrap-layout';
+import CommentModal from './CommentModal.svelte';
+import Comments from './Comments.svelte'
+
+
+
 
 // { user: string, post: string, profilePic: string, picture: string }[] 
 
-let updates  = [{
-         user: 'Lee', 
-         post: 'Just got back from a 450 mile ride, too easy', 
-        profilePic: "~/Images/blankProfilePic.png",
-        picture: 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1'},
-         {user: 'Harry', post: 'I love bikes me', profilePic: "~/Images/blankProfilePic.png", picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Floyd-landis-toctt.jpg/1200px-Floyd-landis-toctt.jpg'}, {user: 'Chris', post: 'Quick 5 miles', profilePic: "~/Images/blankProfilePic.png", picture: 'https://cdn.road.cc/sites/default/files/styles/main_width/public/irb1oxnwkljulmqul-ya1wpvbi5z3kjnoawnpi-kk-2048x1536.jpg' },{user: 'John', post: 'Big ride planned this weekend!!', profilePic: "~/Images/blankProfilePic.png", picture: 'https://media2.fdncms.com/sevendaysvt/imager/u/original/21581403/sports1-1-b8504bdcfa56c38a.jpg'}]
+let updates  = [
+        { user: 'Lee', post: 'Just got back from a 450 mile ride, too easy',
+            profilePic: "~/Images/blankProfilePic.png",
+            picture: 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1'},
+
+         {user: 'Harry', post: 'I love bikes me', profilePic: "~/Images/blankProfilePic.png", picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Floyd-landis-toctt.jpg/1200px-Floyd-landis-toctt.jpg'}, 
+
+         {user: 'Chris', post: 'Quick 5 miles', profilePic: "~/Images/blankProfilePic.png", picture: 'https://cdn.road.cc/sites/default/files/styles/main_width/public/irb1oxnwkljulmqul-ya1wpvbi5z3kjnoawnpi-kk-2048x1536.jpg' },
+         
+         {user: 'John', post: 'Big ride planned this weekend!!', profilePic: "~/Images/blankProfilePic.png", picture: 'https://media2.fdncms.com/sevendaysvt/imager/u/original/21581403/sports1-1-b8504bdcfa56c38a.jpg'}]
 
 
 let users = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 20, totalMilesCompleted: 50, weekStreak: 2, percentComplete: 50}, {user: 'Harry', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 25, totalMilesCompleted: 55, weekStreak: 2, percentComplete: 30}, {user: 'Chris', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 10, totalMilesCompleted: 40, weekStreak: 2, percentComplete: 20}, {user: 'John', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 15, totalMilesCompleted: 45, weekStreak: 2, percentComplete: 70}]
@@ -26,12 +36,16 @@ let users = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", milesComp
  const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app"})
 
 
-let userPost = {}
-
-async function openModal() {
-    let result: any = await showModal({page: ModalPage, props: {userPost: userPost}});
-   updates = [result, ...updates]
+ async function openModal() {
+    let userPost = {};
+    let result:any  = await showModal({
+            page: PostModal,
+            props: { userPost: userPost },
+        });
+        updates = [result, ...updates];
+    
 }
+ 
 
 // onMount(async () => {
     
@@ -81,7 +95,7 @@ const setProgressBarWidth = (percent) => {
                         <stackLayout text="30" col="0" class="progressbar-value"></stackLayout>
                       </gridLayout>
                       
-                      <button on:tap="{openModal}"text="Post"></button>
+                      <button on:tap="{() => {openModal()}}"text="Post"></button>
                       
                     <listView margin="10" backgroundColor="#E9FDE3"items="{updates}"> 
                     <Template let:item>
@@ -100,6 +114,8 @@ const setProgressBarWidth = (percent) => {
                                     </stackLayout>
                                 </scrollView>
                             </stackLayout>
+                            <button on:tap={() => navigate({ page: Comments })} text="View comments" />
+                            
                         </stackLayout>
                     </Template>
                     </listView>
