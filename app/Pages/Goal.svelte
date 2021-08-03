@@ -5,28 +5,84 @@
   const items = ["Health", "Fitness", "Skill", "Social", "Career"] 
 </script>
 
-<style>
-  .picker {
-    background-color: blanchedalmond;
-    color: red;
-    border-color: brown;
-    border-width: 2;
-    height: 100;
-    vertical-align: middle;
-}
-
-
-</style>
-
 <page>
-  <stackLayout>
-    <label text="Create Your Goal" fontSize="50"></label>
-    <label text="Select a category"></label>
+  <stackLayout class="layout">
+    <stackLayout class="form">
+    <!-- <label text="Create Your Goal" fontSize="40"
+    horizontalAlignment="center"
+    color="white"
+    class="title"
+    fontWeight="bold"></label> -->
+    <label text="Select a category" fontSize="30"
+    horizontalAlignment="center"
+    class="label"
+    color="white"
+    fontWeight="bold"></label>
     <listPicker items="{items}" class="picker"></listPicker>
-    <label text="What's your group goal"></label>
-    <textField hint="eg. cycle 30 miles per week"></textField>
-    <label text="Goal date"></label>
-    <datePicker></datePicker>
-    <button text="create goal" on:tap="{()=> navigate({page : SetupComplete})}"></button>
+    <label text="What is your goal?" fontSize="30"
+    horizontalAlignment="center"
+    class="label"
+    color="white"
+    fontWeight="bold"></label>
+    <textField hint="eg. cycle 30 miles per week" fontSize="20"
+    horizontalAlignment="center"
+    color="white"></textField>
+    <label text="Completion date" fontSize="30"
+    horizontalAlignment="center"
+    class="label"
+    color="white"
+    fontWeight="bold"></label>
+    <datePicker class="date-picker"></datePicker>
+    <button text="Submit" on:tap="{()=> navigate({page : SetupComplete})}" class="button"></button>
+  </stackLayout>
   </stackLayout>
 </page>
+
+<style>
+  .picker {
+    border-width: 2;
+    background-color: white;
+    border-color: white;
+    border-radius: 20;
+    height: 150;
+    width: 325;
+    vertical-align: middle;
+}
+.date-picker {
+    background-color: white;
+    border-color: white;
+    border-width: 2;
+    border-radius: 20;
+    height: 150;
+    width: 325;
+    vertical-align: middle;
+}
+.layout {
+        background-image: url("~/Images/Timber.jpg");
+        background-position: center;
+      }
+/* .title {
+  margin-top: 40;
+} */
+.form {
+  margin-left: 40;
+  margin-right: 40;
+  flex-grow: 2; 
+  margin-top: 22; 
+}
+
+.label {
+    margin-top: 50;
+    margin-bottom: 15;
+  }
+
+  .button {
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    border-radius: 50%;
+    position: center;
+    margin-top: 20;
+  }
+</style>

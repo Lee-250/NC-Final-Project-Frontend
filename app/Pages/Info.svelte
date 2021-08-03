@@ -16,8 +16,7 @@
     <label class="label" fontSize="28" color="white" text=" 🏆  Create a goal" />
     <label class="label" fontSize="28" color="white" text=" 📚  Choose a category" />
     <label class="label" fontSize="28" color="white" text=" 🥂  Invite your friends" />
-    <label class="label" fontSize="28" color="white" text=" 📊  Post updates and track
-        everyones progress" textWrap="true"/> 
+    <label class="label" fontSize="28" color="white" text=" 📊  Post updates and track everyones progress" textWrap="true"/> 
    </stackLayout>
     <stackLayout />
     <stackLayout row="2" class="form">
