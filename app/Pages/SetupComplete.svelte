@@ -5,7 +5,7 @@ import GoalPage from "./GoalPage.svelte";
 </script>
 
 <page>
-  <stackLayout>
+  <stackLayout class="layout">
     <label
       fontSize="35"
       color="white"
@@ -26,4 +26,8 @@ import GoalPage from "./GoalPage.svelte";
 </page>
 
 <style>
+  .layout {
+    background-image: url("~/Images/Timber.jpg");
+    background-position: center;
+  }
 </style>
