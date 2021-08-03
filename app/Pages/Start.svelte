@@ -5,7 +5,6 @@ import GoalPage from "./GoalPage.svelte";
 </script>
 
 <page>
-    <actionBar class="action-bar2" />
     <stackLayout class="layout">
         <stackLayout class="form">
             <label text="First time here?" fontSize="40"
@@ -41,10 +40,6 @@ import GoalPage from "./GoalPage.svelte";
 
 
 <style>
-
-.action-bar2 {
-    opacity: 0;
-  }
 
 .layout {
         background-image: url("~/Images/Timber.jpg");
