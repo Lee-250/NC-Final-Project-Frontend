@@ -61,24 +61,9 @@ const setProgressBarWidth = (percent) => {
 
 </script>
 
-<style>
-.progressbar {
-    height: 20;
-    margin: 10;
-    border-radius: 10;
-    border-color: black;
-    border-width: 1;
-}
-.progressbar-value {
-    background: #337ab7;
-    border-radius: 10;
-
-}
-
-</style>
 
 <page >
-    <stackLayout>
+    <stackLayout >
         <bottomNavigation>
             <tabStrip>
                 <tabStripItem>
@@ -88,41 +73,36 @@ const setProgressBarWidth = (percent) => {
                     <label text="Progress" />
                 </tabStripItem>
             </tabStrip>
-            <tabContentItem >
-                <stackLayout backgroundColor="#92CD92" class="m-x-auto" >
-                    <label  class="text-left header" text="GoalPage" fontSize="20"/>
-                    <gridLayout columns="1*, *" class="progressbar">
-                        <stackLayout text="30" col="0" class="progressbar-value"></stackLayout>
-                      </gridLayout>
+            <tabContentItem class="layout">
+                <stackLayout >
+                      <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
                       
-                      <button on:tap="{() => {openModal()}}"text="Post"></button>
-                      
-                    <listView margin="10" backgroundColor="#E9FDE3"items="{updates}"> 
+                    <listView margin="10" items="{updates}"> 
                     <Template let:item>
                         <stackLayout >
                             <gridLayout columns="50, 50" rows="*, *">
                                 <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}" />
                             </gridLayout>
-                            <stackLayout height="300">
+                            <stackLayout height="300" >
                                 <label col="0" row="1" class="text-left" text="{item.post}" />
                                 <scrollView orientation="horizontal">
-                                    <stackLayout orientation="horizontal">
+                                    <stackLayout orientation="horizontal" >
                                         <image src="{item.picture}"/>
                                         <image src="{item.picture}"/>
                                         <image src="{item.picture}"/>
                                     </stackLayout>
                                 </scrollView>
                             </stackLayout>
-                            <button on:tap={() => navigate({ page: Comments })} text="View comments" />
+                            <button on:tap={() => navigate({ page: Comments })} text="View comments" class="button"/>
                             
                         </stackLayout>
                     </Template>
                     </listView>
                 </stackLayout>
             </tabContentItem>
-            <tabContentItem >
-                <listView margin="10" backgroundColor="#E9FDE3" items="{users}">
+            <tabContentItem class="layout">
+                <listView margin="10" items="{users}">
                     <Template let:item>
                         <stackLayout >
                             <gridLayout columns="50, 50" rows="*, *">
@@ -136,7 +116,6 @@ const setProgressBarWidth = (percent) => {
                                 <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">
                                     <stackLayout col="0" class="progressbar-value"></stackLayout>
                                   </gridLayout>
-                                  <button text="progress bar"/>
                             </stackLayout>
                         </stackLayout>
 
@@ -147,3 +126,33 @@ const setProgressBarWidth = (percent) => {
         </bottomNavigation>
         </stackLayout>
 </page>
+
+<style>
+    .layout {
+    background-image: url("~/Images/Sky.jpg");
+    background-position: center;
+  }
+    .progressbar {
+        height: 20;
+        margin: 10;
+        border-radius: 10;
+        border-color: black;
+        border-width: 1;
+    }
+    .progressbar-value {
+        background: #337ab7;
+        border-radius: 10;
+    
+    }
+    .button {
+  display: inline-block;
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-size: 28px;
+  border-radius: 60px;
+  margin-left: 30;
+  margin-right: 30;
+}
+    
+</style>
