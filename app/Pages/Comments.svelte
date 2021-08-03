@@ -2,9 +2,11 @@
     import CommentModal from './CommentModal.svelte';
     import {showModal} from 'svelte-native';
     import {Template} from 'svelte-native/components';
+    import { onMount } from 'svelte';
+    import axios from 'axios/dist/axios';
 
 
-let comments = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", commentBody: 'Wow, really impressive!' }]
+// let comments = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", commentBody: 'Wow, really impressive!' }]
 
 async function openModal() {
     let userComment = {};
@@ -14,6 +16,23 @@ async function openModal() {
         });
         comments = [result, ...comments];
     }
+
+
+    const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/XGqXEyOP0AanWsqyRqj9"})
+
+    export let postId;
+    let comments = [];
+
+    onMount(async () => {
+     
+     const {data}  = await devApi.get(`/feed/${postId}`)
+     comments = data;
+     console.log(comments);
+     return comments;
+
+})
+
+    
 
 </script>
 
@@ -33,8 +52,8 @@ async function openModal() {
         <Template let:item>
             <stackLayout>
                 <gridLayout columns="50, 50" rows="*, *">
-                    <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
-                    <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                    <!-- <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" /> -->
+                    <label fontWeight="bold" col="1" row="0" text="{item.username}" />
                 </gridLayout>
                 <stackLayout>
                     <label col="0" row="1" class="text-left" text="{item.commentBody}" />
