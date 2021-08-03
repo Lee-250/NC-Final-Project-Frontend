@@ -7,17 +7,49 @@
 </script>
 
 <page>
-  <stackLayout paddingBottom="80">
+  <stackLayout paddingBottom="80" class="layout">
+    <image src="~/Images/trophy2.png" class="img"/>
+    <stackLayout class="form">
     <label
       text="Achieve"
       fontSize="70"
       horizontalAlignment="center"
       color="white"
+      class="title"
+      fontWeight="bold"
     />
-    <image src="~/Images/trophy.png" />
-    <button on:tap={() => navigate({ page: Start })} text="Start" />
+    <button on:tap={() => navigate({ page: Start })} text="Start" class="button" />
+    </stackLayout>
   </stackLayout>
 </page>
 
 <style>
+  .layout {
+    background-image: url("~/Images/Timber.jpg");
+    background-position: center;
+  }
+
+  .title {
+    margin-bottom: 30;
+  }
+  
+  .button {
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    border-radius: 50%;
+    position: center;
+  }
+
+  .img {
+    margin-top: 80;
+  }
+
+  .form {
+  margin-left: 40;
+  margin-right: 40;
+  flex-grow: 2;  
+}
+
 </style>
