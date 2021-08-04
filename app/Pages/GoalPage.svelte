@@ -58,11 +58,21 @@
     </script>
     
     <style>
-    .figures {
+    .figure {
             
-            text-align: center;
+            /* text-align: center; */
+            margin-left: 30;
             font-size:70%;
-            color: #E1BC29;
+        }
+        .figure2 {
+            margin-left: 70;
+            font-size:70%;
+        }
+        .week-streak {
+            margin-left: 30;
+        }
+        .total-miles {
+            margin-left: 28;
         }
         .progressbar {
             height: 20;
@@ -70,11 +80,15 @@
             border-radius: 10;
             border-color: black;
             border-width: 2;
+            margin-bottom: 50;
         }
         .progressbar-value {
-            background: #E1BC29;
+            background: #33ff00;
             border-radius: 10;
         
+        }
+        .week {
+            margin-left: 30;
         }
         .list-background {
             background-color: rgb(255, 255, 255);
@@ -108,9 +122,6 @@
     width: 140;
   }
 
-  .img {
-      border-radius: 50%
-  }
   .grid-layout {
       margin-top: 22;
   }
@@ -142,12 +153,11 @@
                     <listView items="{feed}"> 
                     <Template let:item>
                         <stackLayout class="list-background">
-                            <gridLayout columns="50, auto, auto" rows="*, *">
-                                <image  col="0" row="0" class="img" src="{item.avatar}" />
+                            <gridLayout columns="50, auto, *" rows="*, *">
+                                <image  col="0" row="0" src="{item.avatar}" />
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="18"/>
-                                <label col="2" row="0" class="text-left" text="{item.postBody}" fontSize="18" textWrap="true"/>
+                                <label col="2" row="0" text="{item.postBody}" fontSize="18" textWrap="true"/>
                             </gridLayout>
-                            <!-- <label col="0" row="1" class="text-left" text="{item.postBody}" /> -->
                             {#if item.imageURL}
                             <stackLayout height="300" >
                                 <scrollView orientation="horizontal">
@@ -167,25 +177,25 @@
                 </stackLayout>
             </tabContentItem>
             <tabContentItem class="layout">
-                <listView margin="10" items="{users}">
+                <listView items="{users}">
                     <Template let:item>
                         <stackLayout class="list-background" >
-                            <gridLayout columns="50, 50" rows="*, *">
-                                <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
-                                <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                            <gridLayout columns="50, auto" rows="*, *">
+                                <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}"/>
+                                <label fontWeight="bold" col="1" row="0" text="{item.user}" fontSize="22"/>
                             </gridLayout>
-                            <stackLayout height="300">
-                                <label class="h2" text="Miles completed this week: {item.milesCompletedThisWeek}"/>
+                            <stackLayout height="290">
+                                <label class="week" text="Miles completed this week: {item.milesCompletedThisWeek}" fontSize="22"/>
                                 <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">                                                                 
                                      <stackLayout  col="0" class="progressbar-value">
                                     <label col="0" text="test" />
                                     </stackLayout>
                                   </gridLayout>
-                                  <gridLayout columns="*, *" rows="*, *">
-                                      <label class="h3" col="0" row="0" text="Total miles completed:"/>
-                                      <label class="figures" text="{item.totalMilesCompleted}" col="0" row="1" />   
-                                      <label class="h3"  col="1" text="Week streak:" />
-                                      <label class="figures" col="1" row="1" text="{item.weekStreak}"/>
+                                  <gridLayout columns="*, *" rows="30, *">
+                                      <label class="total-miles" col="0" row="0" text="Total miles:" fontSize="22"/>
+                                      <label class="figure" text="{item.totalMilesCompleted}" col="0" row="1" fontWeight="bold"/>   
+                                      <label class="week-streak"  col="1" text="Week streak:" fontSize="22"/>
+                                      <label class="figure2" col="1" row="1" text="{item.weekStreak}" fontWeight="bold"/>
                                   </gridLayout>
 
                             </stackLayout>

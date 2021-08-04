@@ -36,7 +36,7 @@ let value = 0;
 </script>
 <style>
     stackLayout {
-        padding: 30;
+        padding: 20;
     }
 
     label {
@@ -45,7 +45,7 @@ let value = 0;
     }
 
     .post-background {
-        background-color: #4D9DE0;
+        background-image: url("~/Images/Timber.jpg");
     }
     .content-background {
             background-color: honeydew;
