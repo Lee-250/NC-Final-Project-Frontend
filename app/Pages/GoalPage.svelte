@@ -146,7 +146,7 @@
     
                 <tabContentItem class="layout progressPage">
                     <listView items="{users}">
-                        <Template class="list-background" margin="10"  let:item>
+                        <Template let:item>
                             <stackLayout class="list-background"  >
                                 <gridLayout columns="50, 50" rows="*, *">
                                     <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
