@@ -125,6 +125,8 @@
   .grid-layout {
       margin-top: 22;
   }
+  
+
 </style>
 
 <page >
@@ -154,7 +156,7 @@
                     <Template let:item>
                         <stackLayout class="list-background">
                             <gridLayout columns="50, auto, *" rows="*, *">
-                                <image  col="0" row="0" src="{item.avatar}" />
+                                <image  col="0" row="0" src="{item.avatar}" class="-thumb img-circle"/>
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="18"/>
                                 <label col="2" row="0" text="{item.postBody}" fontSize="18" textWrap="true"/>
                             </gridLayout>
