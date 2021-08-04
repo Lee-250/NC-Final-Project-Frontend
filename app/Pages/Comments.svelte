@@ -5,37 +5,32 @@
     import { onMount } from 'svelte';
     import axios from 'axios/dist/axios';
 
-
 // let comments = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", commentBody: 'Wow, really impressive!' }]
+    export let postId;
 
-async function openModal() {
-    let userComment = {};
-    let result: any = await showModal({
-            page: CommentModal,
-            props: { userComment: userComment },
-        });
+    async function openModal() {
+        let userComment = {};
+        let result: any = await showModal({
+                page: CommentModal,
+                props: { userComment, postId },
+            });
         comments = [result, ...comments];
     }
+
 
     const pic = [{ picture: 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1'}]
 
 
     const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/XGqXEyOP0AanWsqyRqj9"})
 
-    export let postId;
     let comments = [];
 
     onMount(async () => {
-     
-     const {data}  = await devApi.get(`/feed/${postId}`)
-     comments = data;
-     console.log(comments);
-     return comments;
-
-})
-
-    
-
+        const {data}  = await devApi.get(`/feed/${postId}`)
+        comments = data;
+        console.log(postId);
+        return comments;
+    })
 </script>
 
 <style>
@@ -75,10 +70,13 @@ async function openModal() {
 
 <page>
 
+
     
     <stackLayout class="commentsPage" >
         <label  class="text-left header" text="Comments" fontSize="20"/>
          <button class="commentButton"  text="Post a comment" on:tap="{() => {openModal()}}" />
+
+  
             <stackLayout>
                 <image src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1" />
             </stackLayout>
@@ -99,6 +97,5 @@ async function openModal() {
                 </Template>
              </listView>
     </stackLayout>
-
 </page>
 

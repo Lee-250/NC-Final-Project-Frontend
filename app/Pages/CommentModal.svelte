@@ -1,24 +1,24 @@
 <script lang="typescript">
-const { closeModal }=require("svelte-native");
+    import axios from 'axios/dist/axios';
+    
+    const { closeModal }=require("svelte-native");
 
-export let userComment;
+    export let userComment;
+    export let postId
 
-let textFromUser = '';
-const addUpdate = (textFromUser):void => {
-   
-   userComment = {user: 'John', commentBody: textFromUser, profilePic: "~/Images/blankProfilePic.png"};
-  console.log(userComment)
-   closeModal(userComment);
-   
-}
+    let textFromUser = '';
+    const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/XGqXEyOP0AanWsqyRqj9/feed"})
 
+    const addUpdate = async (textFromUser): Promise<void> => {
+        const response = await devApi.put(`/${postId}`, {commentBody: textFromUser, username: "fred"})
+        userComment = {username: 'fred', commentBody: textFromUser, profilePic: "~/Images/blankProfilePic.png"};
+        // console.log(userComment)
+        closeModal(userComment);
+    }
 </script>
 
 <style>
-
 </style>
-
-
 
 <page>
     <stackLayout class="nt-input" flexDirection="column">

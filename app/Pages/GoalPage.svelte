@@ -65,7 +65,6 @@
     </script>
     
     <style>
-    
     .figures {
             
             text-align: center;
@@ -84,7 +83,7 @@
             border-radius: 10;
         
         }
-        .progressPage {
+      .progressPage {
             background-color: #4D9DE0;
         }
         .list-background {
@@ -92,100 +91,76 @@
             border: 10px;
             margin: 5px;
             border-radius: 5;
-        }
-    
-    </style>
-    
-    <page >
-        <stackLayout >
-            <bottomNavigation>
-                <tabStrip>
-                    <tabStripItem>
-                        <label text="Home" />
-                        <image src="font://&#xf015;" class="fas t-36" />
-                    </tabStripItem>
-                
-                    <tabStripItem>
-                        <label text="Progress" />
-                        <image src="font://&#xf012;" class="fas fa-signal" />
-                    </tabStripItem>
-                </tabStrip>
-    
-    
-                <tabContentItem class="layout">
-                    <stackLayout >
-                          <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
-                          
-                        <listView margin="10" items="{feed}"> 
-                        <Template let:item>
-                            <stackLayout >
-                                <gridLayout columns="50, 50" rows="*, *">
-                                    <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}" />
-                                    <label fontWeight="bold" col="1" row="0" text="{item.user}" />
-                                </gridLayout>
-                                <stackLayout height="300" >
-                                    <label col="0" row="1" class="text-left" text="{item.postBody}" />
-                                    <scrollView orientation="horizontal">
-                                        <stackLayout orientation="horizontal" >
-                                            <image src="{item.picture}"/>
-                                            <image src="{item.picture}"/>
-                                            <image src="{item.picture}"/>
-                                        </stackLayout>
-                                    </scrollView>
-                                </stackLayout>
-                                <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="View comments" class="button"/>
-                                
+        }  
+</style>
+
+<page >
+    <stackLayout >
+        <bottomNavigation>
+            <tabStrip>
+                <tabStripItem>
+                    <label text="Home" />
+                    <image src="font://&#xf015;" class="fas t-36" />
+                </tabStripItem>
+                <tabStripItem>
+                    <label text="Progress" />
+                    <image src="font://&#xf012;" class="fas fa-signal" />
+                </tabStripItem>
+            </tabStrip>
+            <tabContentItem class="layout">
+                <stackLayout >
+                      <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
+                    <listView margin="10" items="{feed}"> 
+                    <Template let:item>
+                        <stackLayout >
+                            <gridLayout columns="50, 50" rows="*, *">
+                                <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}" />
+                                <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                            </gridLayout>
+                            <label col="0" row="1" class="text-left" text="{item.postBody}" />
+                            {#if item.picture}
+                            <stackLayout height="300" >
+                                <scrollView orientation="horizontal">
+                                    <stackLayout orientation="horizontal" >
+                                        <image src="{item.picture}"/>
+                                        <image src="{item.picture}"/>
+                                        <image src="{item.picture}"/>
+                                    </stackLayout>career"
+                                </scrollView>
                             </stackLayout>
-                        </Template>
-                        </listView>
-                    </stackLayout>
-                </tabContentItem>
-    
-    
-                
-    
-                <tabContentItem class="layout progressPage">
-                    <listView items="{users}">
-                        <Template let:item>
-                            <stackLayout class="list-background"  >
-                                <gridLayout columns="50, 50" rows="*, *">
-                                    <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
-                                    <label fontWeight="bold" col="1" row="0" text="{item.user}" />
-                                </gridLayout>
-                                <stackLayout height="300">
-                                    <label class="h2" text="Miles completed this week: {item.milesCompletedThisWeek}"/>
-    
-    
-    
-                                    <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">
-                                       
-                                       
-                                        <stackLayout  col="0" class="progressbar-value">
-                                        <label col="0" text="test" />
-                                        </stackLayout>
-                                      </gridLayout>
-    
-    
-    
-                                      <gridLayout columns="*, *" rows="*, *">
-                                          <label class="h3" col="0" row="0" text="Total miles completed:"/>
-                                          <label class="figures" text="{item.totalMilesCompleted}" col="0" row="1" />
-          
-          
-                                          <label class="h3"  col="1" text="Week streak:" />
-                                          <label class="figures" col="1" row="1" text="{item.weekStreak}"/>
-    
-                                      </gridLayout>
-    
-    
-    
-    
-                                </stackLayout>
+
+                            {/if}
+                            <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="View comments" class="button"/>
+                        </stackLayout>
+                    </Template>
+                    </listView>
+                </stackLayout>
+            </tabContentItem>
+            <tabContentItem class="layout progressPage">
+                <listView margin="10" items="{users}">
+                    <Template let:item class="list-background" margin="10">
+                        <stackLayout class="list-background" >
+                            <gridLayout columns="50, 50" rows="*, *">
+                                <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
+                                <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                            </gridLayout>
+                            <stackLayout height="300">
+                                <label class="h2" text="Miles completed this week: {item.milesCompletedThisWeek}"/>
+                                <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">                                                                 
+                                     <stackLayout  col="0" class="progressbar-value">
+                                    <label col="0" text="test" />
+                                    </stackLayout>
+                                  </gridLayout>
+                                  <gridLayout columns="*, *" rows="*, *">
+                                      <label class="h3" col="0" row="0" text="Total miles completed:"/>
+                                      <label class="figures" text="{item.totalMilesCompleted}" col="0" row="1" />   
+                                      <label class="h3"  col="1" text="Week streak:" />
+                                      <label class="figures" col="1" row="1" text="{item.weekStreak}"/>
+                                  </gridLayout>
+
                             </stackLayout>
-    
                         </Template>
                     </listView>
-    
                 </tabContentItem>
             </bottomNavigation>
             </stackLayout>
