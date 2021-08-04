@@ -5,49 +5,36 @@
     import { onMount } from 'svelte';
     import axios from 'axios/dist/axios';
 
-
 // let comments = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", commentBody: 'Wow, really impressive!' }]
+    export let postId;
 
-async function openModal() {
-    let userComment = {};
-    let result: any = await showModal({
-            page: CommentModal,
-            props: { userComment: userComment },
-        });
+    async function openModal() {
+        let userComment = {};
+        let result: any = await showModal({
+                page: CommentModal,
+                props: { userComment, postId },
+            });
         comments = [result, ...comments];
     }
 
-
     const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/XGqXEyOP0AanWsqyRqj9"})
 
-    export let postId;
     let comments = [];
 
     onMount(async () => {
-     
-     const {data}  = await devApi.get(`/feed/${postId}`)
-     comments = data;
-     console.log(comments);
-     return comments;
-
-})
-
-    
-
+        const {data}  = await devApi.get(`/feed/${postId}`)
+        comments = data;
+        console.log(postId);
+        return comments;
+    })
 </script>
 
 <style></style>
 
 <page>
-
-    
     <stackLayout backgroundColor="#92CD92" class="m-x-auto" >
         <label  class="text-left header" text="Comments" fontSize="20"/>
-        
-          
         <button text="Post a comment" on:tap="{() => {openModal()}}" />
-
-          
         <listView height="650" rowHeight="60" margin="10" backgroundColor="#E9FDE3"items="{comments}"> 
         <Template let:item>
             <stackLayout>
@@ -62,6 +49,5 @@ async function openModal() {
         </Template>
         </listView>
     </stackLayout>
-
 </page>
 

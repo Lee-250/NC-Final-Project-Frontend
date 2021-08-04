@@ -1,12 +1,27 @@
 <script lang="typescript">
   import { navigate } from "svelte-native";
   import SetupComplete from "./SetupComplete.svelte"
+  import axios from 'axios/dist/axios';
+
+  let someDate: Date;
+  let goalTitle: string;
+  let selectedCategory: string;
 
   const items = ["Health", "Fitness", "Skill", "Social", "Career"] 
+  const goal = {
+	goalName: goalTitle,
+	goalTarget: 50,
+	category: selectedCategory,
+  endDate: someDate,
+}
+  const handleSubmit = async () =>{
+    const response = await axios.post("https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals", goal)
+    navigate({page : SetupComplete});
+  }
 </script>
 
 <page>
-  <stackLayout class="layout">
+  <stackLayout class="layout">new Date()
     <stackLayout class="form">
     <!-- <label text="Create Your Goal" fontSize="40"
     horizontalAlignment="center"
@@ -18,22 +33,24 @@
     class="label"
     color="white"
     fontWeight="bold"></label>
-    <listPicker items="{items}" class="picker"></listPicker>
+      <listPicker items="{items}" class="picker"
+      bind:selectedIndex={selectedCategory}></listPicker>
     <label text="What is your goal?" fontSize="30"
     horizontalAlignment="center"
     class="label"
     color="white"
     fontWeight="bold"></label>
-    <textField hint="eg. cycle 30 miles per week" fontSize="20"
-    horizontalAlignment="center"
-    color="white"></textField>
+      <textField hint="eg. cycle 30 miles per week" fontSize="20"
+      horizontalAlignment="center"
+      color="white"
+      bind:text="{goalTitle}"></textField>
     <label text="Completion date" fontSize="30"
     horizontalAlignment="center"
     class="label"
     color="white"
     fontWeight="bold"></label>
-    <datePicker class="date-picker"></datePicker>
-    <button text="Submit" on:tap="{()=> navigate({page : SetupComplete})}" class="button"></button>
+    <datePicker class="date-picker" bind:date="{someDate}"></datePicker>
+    <button text="Submit" on:tap="{handleSubmit}" class="button"></button>
   </stackLayout>
   </stackLayout>
 </page>
