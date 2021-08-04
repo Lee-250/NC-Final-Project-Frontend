@@ -69,7 +69,7 @@ import GoalPage from "./GoalPage.svelte";
 .form {
   margin-left: 40;
   margin-right: 40;
-  flex-grow: 2;  
+  /* flex-grow: 2;   */
   margin-bottom: 60;
 }
 

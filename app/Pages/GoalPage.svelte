@@ -105,7 +105,6 @@ const setProgressBarWidth = (percent) => {
             <tabContentItem class="layout">
                 <stackLayout >
                       <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
-                      
                     <listView margin="10" items="{feed}"> 
                     <Template let:item>
                         <stackLayout >
@@ -113,8 +112,9 @@ const setProgressBarWidth = (percent) => {
                                 <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}" />
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}" />
                             </gridLayout>
+                            <label col="0" row="1" class="text-left" text="{item.postBody}" />
+                            {#if item.picture}
                             <stackLayout height="300" >
-                                <label col="0" row="1" class="text-left" text="{item.postBody}" />
                                 <scrollView orientation="horizontal">
                                     <stackLayout orientation="horizontal" >
                                         <image src="{item.picture}"/>
@@ -123,8 +123,8 @@ const setProgressBarWidth = (percent) => {
                                     </stackLayout>
                                 </scrollView>
                             </stackLayout>
+                            {/if}
                             <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="View comments" class="button"/>
-                            
                         </stackLayout>
                     </Template>
                     </listView>
