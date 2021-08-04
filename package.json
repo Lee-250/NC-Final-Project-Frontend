@@ -14,7 +14,8 @@
     "@nativescript/webpack": "3.0.0",
     "axios": "^0.21.1",
     "nativescript-imagepicker": "^7.1.0",
-    "svelte-native": "~0.9.1"
+    "svelte-native": "~0.9.1",
+    "svelte": "~3.24.1"
   },
   "devDependencies": {
     "@nativescript/android": "7.0.0",

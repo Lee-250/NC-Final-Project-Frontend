@@ -10,11 +10,8 @@
     import PostModal from './PostModal.svelte';
     import { itemHeightProperty } from '@nativescript/core/ui/layouts/wrap-layout';
     import CommentModal from './CommentModal.svelte';
-    import Comments from './Comments.svelte'
-    
-    
-    
-    
+    import Comments from './Comments.svelte';
+
     // { user: string, post: string, profilePic: string, picture: string }[] 
     
     let updates  = [
@@ -32,17 +29,13 @@
     let users = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 20, totalMilesCompleted: 50, weekStreak: 2, percentComplete: 50}, {user: 'Harry', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 25, totalMilesCompleted: 55, weekStreak: 2, percentComplete: 30}, {user: 'Chris', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 10, totalMilesCompleted: 40, weekStreak: 2, percentComplete: 20}, {user: 'John', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 15, totalMilesCompleted: 45, weekStreak: 2, percentComplete: 70}]
     
     
-     const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/XGqXEyOP0AanWsqyRqj9"})
+     const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt"})
     
      let feed = [];
     
      onMount(async () => {
-         
-             const {data}  = await devApi.get('/feed')
-             feed = data;
-             console.log(feed);
-             return feed;
-        
+        const {data}  = await devApi.get('/feed')
+        feed = data;
      })
     
      async function openModal() {
@@ -87,7 +80,7 @@
             background-color: rgb(255, 255, 255);
             /* border: 10px; */
             border-radius: 35%;
-            flex: auto;
+            /* flex: auto; */
             /* margin-bottom: 20;
             margin-top: 10; */
             
@@ -154,14 +147,15 @@
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="18"/>
                                 <label col="2" row="0" class="text-left" text="{item.postBody}" fontSize="18" textWrap="true"/>
                             </gridLayout>
-                            {#if item.picture}
+                            <label col="0" row="1" class="text-left" text="{item.postBody}" />
+                            {#if item.imageURL}
                             <stackLayout height="300" >
                                 <scrollView orientation="horizontal">
                                     <stackLayout orientation="horizontal" >
-                                        <image src="{item.picture}"/>
-                                        <image src="{item.picture}"/>
-                                        <image src="{item.picture}"/>
-                                    </stackLayout>career"
+                                        <image src="~/"/>
+                                        <!-- <image src="{item.picture}"/>
+                                        <image src="{item.picture}"/> -->
+                                    </stackLayout>
                                 </scrollView>
                             </stackLayout>
 

@@ -8,20 +8,21 @@
   let selectedCategory: string;
 
   const items = ["Health", "Fitness", "Skill", "Social", "Career"] 
-  const goal = {
-	goalName: goalTitle,
-	goalTarget: 50,
-	category: selectedCategory,
-  endDate: someDate,
-}
+ 
   const handleSubmit = async () =>{
+    const goal = {
+      goalName: goalTitle,
+      goalTarget: 50,
+      category: items[selectedCategory],
+      endDate: someDate,
+    }
     const response = await axios.post("https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals", goal)
     navigate({page : SetupComplete});
   }
 </script>
 
 <page>
-  <stackLayout class="layout">new Date()
+  <stackLayout class="layout">
     <stackLayout class="form">
     <!-- <label text="Create Your Goal" fontSize="40"
     horizontalAlignment="center"
