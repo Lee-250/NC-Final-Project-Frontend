@@ -35,24 +35,6 @@
 
 <style>
     
-    .figures {
-            
-            text-align: center;
-            font-size:70%;
-            color: #E1BC29;
-        }
-        .progressbar {
-            height: 20;
-            margin: 10;
-            border-radius: 10;
-            border-color: black;
-            border-width: 2;
-        }
-        .progressbar-value {
-            background: #E1BC29;
-            border-radius: 10;
-        
-        }
         .commentsPage {
             background-color: #4D9DE0;
         }
