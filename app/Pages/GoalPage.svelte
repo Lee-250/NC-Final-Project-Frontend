@@ -11,6 +11,7 @@
     import { itemHeightProperty } from '@nativescript/core/ui/layouts/wrap-layout';
     import CommentModal from './CommentModal.svelte';
     import Comments from './Comments.svelte';
+import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
 
     // { user: string, post: string, profilePic: string, picture: string }[] 
     
@@ -37,6 +38,8 @@
         const {data}  = await devApi.get('/feed')
         feed = data;
      })
+
+     
     
      async function openModal() {
         let userPost = {};
@@ -105,6 +108,9 @@
         }
         .button-comments {
     background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
     color: black;
     text-align: center;
     font-size: 16px;
@@ -170,7 +176,15 @@
                             </stackLayout>
 
                             {/if}
-                            <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="Comments" class="button-comments"/>
+                                <gridLayout columns="*, 60, 50" rows="20">
+                                    <label col="0" text="{item.comments.length} comments" />
+                                    <label class ="pull-left" col="1" text="Comment" />
+                                    <image  col="2" row="0" on:tap={() => navigate({ page: Comments, props: {postId: item.postId, imageURL: item.imageURL}})}  src="font://&#xf27a;" class="far fa-comment-alt" />
+
+                                </gridLayout>
+                            
+                            <!-- <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})}  text="Comments" class="button-comments"/> -->
+                                
                         </stackLayout>
                     </Template>
                     </listView>
