@@ -147,12 +147,12 @@
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="18"/>
                                 <label col="2" row="0" class="text-left" text="{item.postBody}" fontSize="18" textWrap="true"/>
                             </gridLayout>
-                            <label col="0" row="1" class="text-left" text="{item.postBody}" />
+                            <!-- <label col="0" row="1" class="text-left" text="{item.postBody}" /> -->
                             {#if item.imageURL}
                             <stackLayout height="300" >
                                 <scrollView orientation="horizontal">
                                     <stackLayout orientation="horizontal" >
-                                        <image src="~/"/>
+                                        <image src="{item.imageURL}"/>
                                         <!-- <image src="{item.picture}"/>
                                         <image src="{item.picture}"/> -->
                                     </stackLayout>
