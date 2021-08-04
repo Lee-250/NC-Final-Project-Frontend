@@ -84,19 +84,41 @@
             border-radius: 10;
         
         }
-        .progressPage {
-            background-color: #4D9DE0;
-        }
         .list-background {
-            background-color: honeydew;
+            background-color: rgb(255, 255, 255);
             border: 10px;
             margin: 5px;
-            border-radius: 5;
+            border-radius: 35%;
         }
-    
+        .layout {
+            background-image: url("~/Images/Timber.jpg");
+            background-position: left;
+        }
+        .button-comments {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 50%;
+    margin-left: 210;
+    width: 140;
+  }
+
+  .button-post {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 50%;
+    margin-right: 240;
+    width: 140;
+  }
+        
     </style>
     
     <page >
+        <actionBar title="Achieve" flat="true">
+        </actionBar>
         <stackLayout >
             <bottomNavigation>
                 <tabStrip>
@@ -114,14 +136,14 @@
     
                 <tabContentItem class="layout">
                     <stackLayout >
-                          <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
-                          
-                        <listView margin="10" items="{feed}"> 
-                        <Template let:item>
-                            <stackLayout >
-                                <gridLayout columns="50, 50" rows="*, *">
-                                    <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}" />
-                                    <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                          <button on:tap="{() => {openModal()}}"text="Post" class="button-post">
+                        </button>
+                        <listView margin="10" items="{updates}"> 
+                        <Template class="list-background" let:item>
+                            <stackLayout class="list-background">
+                                <gridLayout columns="50, auto" rows="*, *">
+                                    <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
+                                    <label fontWeight="bold" col="1" row="0" text="{item.user}" fontSize="25"/>
                                 </gridLayout>
                                 <stackLayout height="300" >
                                     <label col="0" row="1" class="text-left" text="{item.postBody}" />
@@ -133,7 +155,7 @@
                                         </stackLayout>
                                     </scrollView>
                                 </stackLayout>
-                                <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="View comments" class="button"/>
+                                <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="Comments" class="button-comments"/>
                                 
                             </stackLayout>
                         </Template>
@@ -144,7 +166,7 @@
     
                 
     
-                <tabContentItem class="layout progressPage">
+                <tabContentItem class="layout">
                     <listView items="{users}">
                         <Template class="list-background" margin="10"  let:item>
                             <stackLayout class="list-background"  >
