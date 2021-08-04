@@ -70,18 +70,28 @@ const setProgressBarWidth = (percent) => {
             
             text-align: center;
             font-size:70%;
+            color: #E1BC29;
         }
         .progressbar {
             height: 20;
             margin: 10;
             border-radius: 10;
-            border-color: gold;
+            border-color: black;
             border-width: 2;
         }
         .progressbar-value {
-            background: #ffffff;
+            background: #E1BC29;
             border-radius: 10;
         
+        }
+        .progressPage {
+            background-color: #4D9DE0;
+        }
+        .list-background {
+            background-color: honeydew;
+            border: 10px;
+            margin: 5px;
+            border-radius: 5;
         }
 
 </style>
@@ -134,10 +144,10 @@ const setProgressBarWidth = (percent) => {
 
             
 
-            <tabContentItem class="layout">
-                <listView margin="10" items="{users}">
-                    <Template let:item>
-                        <stackLayout >
+            <tabContentItem class="layout progressPage">
+                <listView items="{users}">
+                    <Template class="list-background" margin="10"  let:item>
+                        <stackLayout class="list-background"  >
                             <gridLayout columns="50, 50" rows="*, *">
                                 <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}" />
