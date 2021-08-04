@@ -85,7 +85,7 @@
         }
         .list-background {
             background-color: rgb(255, 255, 255);
-            border: 10px;
+            /* border: 10px; */
             border-radius: 35%;
             flex: auto;
             /* margin-bottom: 20;
@@ -173,7 +173,7 @@
                 </stackLayout>
             </tabContentItem>
             <tabContentItem class="layout">
-                <listView margin="10" items="{users}">
+                <listView items="{users}">
                     <Template let:item>
                         <stackLayout class="list-background" >
                             <gridLayout columns="50, 50" rows="*, *">
