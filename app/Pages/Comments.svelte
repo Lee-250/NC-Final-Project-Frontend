@@ -7,6 +7,7 @@
 
 // let comments = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", commentBody: 'Wow, really impressive!' }]
     export let postId;
+    export let imageURL;
 
     async function openModal() {
         let userComment = {};
@@ -36,7 +37,7 @@
 <style>
     
         .commentsPage {
-            background-color: #4D9DE0;
+            background-image: url("~/Images/Timber.jpg");
         }
         .commentButton {
             border-radius: 5px;
@@ -60,7 +61,7 @@
 
   
             <stackLayout>
-                <image src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1" />
+                <image src="{imageURL}"/>
             </stackLayout>
             <listView items="{comments}"> 
                 <Template let:item>
