@@ -8,7 +8,7 @@
 
 <page>
   <stackLayout paddingBottom="80" class="layout">
-    <image src="~/Images/trophy2.png" class="img"/>
+    <image src="~/Images/trophy3.png" class="img"/>
     <stackLayout class="form">
     <label
       text="Achieve"
@@ -43,7 +43,7 @@
   }
 
   .img {
-    margin-top: 80;
+    margin-top: 150;
   }
 
   .form {
