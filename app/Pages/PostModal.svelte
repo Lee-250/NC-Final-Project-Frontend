@@ -18,6 +18,18 @@ const addUpdate = (textFromUser):void => {
     closeModal(userPost);
     
 }
+let imageURL = ''
+
+const sendImageURL = () => {
+    imageURL = "https://www.ride25.com/wp-content/uploads/2014/03/tired-racer-ride-25.jpg";
+    console.log(imageURL);
+    
+}
+
+
+let value = 0;
+
+
 
 
 
@@ -32,18 +44,61 @@ const addUpdate = (textFromUser):void => {
         text-align: center;
     }
 
+    .post-background {
+        background-color: #4D9DE0;
+    }
+    .content-background {
+            background-color: honeydew;
+            border: 5;
+            margin: 5px;
+            border-radius: 5;
+        }
+
+    .post-buttons {
+        background-color: honeydew;
+        border-radius: 5;
+    }     
+
 </style>
 
-<page>
-    <stackLayout class="nt-input" flexDirection="column">
-    <label text="Create a post" class="font-weight-bold m-b-5" textAlign="center" />
-    <textField hint="post an update" class="-border" bind:text="{textFromUser}"></textField>
-    <stackLayout />
-    <stackLayout class="nt-input" flexDirection="column">
-    <label text="Update your progress!" class="font-weight-bold m-b-5" textAlign="center" />
-    <listPicker items="{items}" class="picker"></listPicker>
 
-    <button on:tap={() => addUpdate(textFromUser)} text="Submit" class="-primary"></button>
+
+
+<page>
+    <stackLayout  class="post-background" flexDirection="column">
+        <stackLayout class="content-background">
+
+        
+    <label text="Create a post" textAlign="center" />
+    <textField hint="post an update" class="-border" bind:text="{textFromUser}"></textField>
+    <label text="Post a picture"   />
+    <stackLayout  height="250" >
+        <scrollView orientation="horizontal">
+            <stackLayout orientation="horizontal" >
+                
+                    <image src="https://i.guim.co.uk/img/media/3b985a7e7023d27de64cf7b0307e3c47e23d5d0b/800_492_3646_2187/master/3646.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=acf1c4feefa6ef880fe497e8c3258700"/>
+                    <stackLayout></stackLayout>
+                    <image src="https://www.ride25.com/wp-content/uploads/2014/03/tired-racer-ride-25.jpg"/>
+                    <stackLayout></stackLayout>
+                    <image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC7MYEGTlm5cxtWNfIAn7WJL1635u4pmmZUzZVTnHRBYT6_xHatIsqwKvpdHX1alMVKoU&usqp=CAU"/>
+                   
+
+                
+            </stackLayout>
+            
+        </scrollView>
+        
+    </stackLayout>
+    
+    <stackLayout>
+        <button on:tap={() => sendImageURL()} text="Select Photo" />
+    </stackLayout>
+    <stackLayout  flexDirection="column">
+        <label text="Miles completed"  textAlign="center" />
+        <slider minValue=0 maxValue=30 bind:value="{value}" />
+        <label text="{Math.floor(value) }" />
+        <button on:tap={() => addUpdate(textFromUser)} text="Submit" ></button>
+    </stackLayout>
     </stackLayout>
 </page>
 
