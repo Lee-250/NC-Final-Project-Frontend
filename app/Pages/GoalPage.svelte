@@ -76,15 +76,44 @@
             border-radius: 10;
         
         }
-      .progressPage {
-            background-color: #4D9DE0;
-        }
         .list-background {
-            background-color: honeydew;
+            background-color: rgb(255, 255, 255);
             border: 10px;
-            margin: 5px;
-            border-radius: 5;
-        }  
+            border-radius: 35%;
+            flex: auto;
+            /* margin-bottom: 20;
+            margin-top: 10; */
+            
+        }
+        .layout {
+            background-image: url("~/Images/Timber.jpg");
+            background-position: left;
+        }
+        .button-comments {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 50%;
+    margin-left: 230;
+    width: 110;
+  }
+
+  .button-post {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 140;
+  }
+
+  .img {
+      border-radius: 50%
+  }
+  .grid-layout {
+      margin-top: 22;
+  }
 </style>
 
 <page >
@@ -102,13 +131,21 @@
             </tabStrip>
             <tabContentItem class="layout">
                 <stackLayout >
-                      <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
-                    <listView margin="10" items="{feed}"> 
+                    <gridLayout columns="250, 150" rows="40, 40" class="grid-layout">
+                      <button on:tap="{() => {openModal()}}"text="Post" class="button-post" col="1" row="0"></button>
+                      <label col="0" row="0" text="Achieve 🏆"
+                      fontSize="40"
+                      horizontalAlignment="center"
+                      color="white"
+                      fontWeight="bold" />
+                    </gridLayout>
+                    <listView items="{feed}"> 
                     <Template let:item>
-                        <stackLayout >
-                            <gridLayout columns="50, 50" rows="*, *">
-                                <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}" />
-                                <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                        <stackLayout class="list-background">
+                            <gridLayout columns="50, auto, auto" rows="*, *">
+                                <image  col="0" row="0" class="img" src="{item.avatar}" />
+                                <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="18"/>
+                                <label col="2" row="0" class="text-left" text="{item.postBody}" fontSize="18" textWrap="true"/>
                             </gridLayout>
                             <label col="0" row="1" class="text-left" text="{item.postBody}" />
                             {#if item.imageURL}
@@ -121,16 +158,17 @@
                                     </stackLayout>career"
                                 </scrollView>
                             </stackLayout>
+
                             {/if}
-                            <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="View comments" class="button"/>
+                            <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="Comments" class="button-comments"/>
                         </stackLayout>
                     </Template>
                     </listView>
                 </stackLayout>
             </tabContentItem>
-            <tabContentItem class="layout progressPage">
+            <tabContentItem class="layout">
                 <listView margin="10" items="{users}">
-                    <Template let:item class="list-background" margin="10">
+                    <Template let:item>
                         <stackLayout class="list-background" >
                             <gridLayout columns="50, 50" rows="*, *">
                                 <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
@@ -149,6 +187,7 @@
                                       <label class="h3"  col="1" text="Week streak:" />
                                       <label class="figures" col="1" row="1" text="{item.weekStreak}"/>
                                   </gridLayout>
+
                             </stackLayout>
                         </Template>
                     </listView>

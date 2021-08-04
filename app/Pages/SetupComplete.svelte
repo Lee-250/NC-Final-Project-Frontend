@@ -28,6 +28,6 @@ import GoalPage from "./GoalPage.svelte";
 <style>
   .layout {
     background-image: url("~/Images/Timber.jpg");
-    background-position: center;
+    background-position: left;
   }
 </style>

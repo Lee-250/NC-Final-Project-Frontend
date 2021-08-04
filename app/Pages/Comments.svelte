@@ -17,6 +17,10 @@
         comments = [result, ...comments];
     }
 
+
+    const pic = [{ picture: 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1'}]
+
+
     const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt"})
 
     let comments = [];
@@ -29,25 +33,51 @@
     })
 </script>
 
-<style></style>
+<style>
+    
+        .commentsPage {
+            background-color: #4D9DE0;
+        }
+        .commentButton {
+            border-radius: 5px;
+        }
+        .list-background {
+            background-color: honeydew;
+            border: 10px;
+            margin: 5px;
+            border-radius: 5;
+        }
+    
+    </style>
 
 <page>
-    <stackLayout backgroundColor="#92CD92" class="m-x-auto" >
+
+
+    
+    <stackLayout class="commentsPage" >
         <label  class="text-left header" text="Comments" fontSize="20"/>
-        <button text="Post a comment" on:tap="{() => {openModal()}}" />
-        <listView height="650" rowHeight="60" margin="10" backgroundColor="#E9FDE3"items="{comments}"> 
-        <Template let:item>
+         <button class="commentButton"  text="Post a comment" on:tap="{() => {openModal()}}" />
+
+  
             <stackLayout>
-                <gridLayout columns="50, 50" rows="*, *">
-                    <!-- <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" /> -->
-                    <label fontWeight="bold" col="1" row="0" text="{item.username}" />
-                </gridLayout>
-                <stackLayout>
-                    <label col="0" row="1" class="text-left" text="{item.commentBody}" />
-                </stackLayout>
+                <image src="https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1" />
             </stackLayout>
-        </Template>
-        </listView>
+            <listView items="{comments}"> 
+                <Template let:item>
+                    <stackLayout class="list-background"  >
+                        
+
+                            <gridLayout columns="50, 50" rows="*, *">
+                                <!-- <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" /> -->
+                                <label fontWeight="bold" col="1" row="0" text="{item.username}" />
+                            </gridLayout>
+                        <label class="text-left" text="{item.commentBody}" />
+                            
+                            
+                        
+                    </stackLayout>
+                </Template>
+             </listView>
     </stackLayout>
 </page>
 
