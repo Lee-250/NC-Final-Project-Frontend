@@ -8,6 +8,7 @@
 // let comments = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", commentBody: 'Wow, really impressive!' }]
     export let postId;
     export let imageURL;
+    
 
     async function openModal() {
         let userComment = {};
@@ -56,29 +57,39 @@
 
     
     <stackLayout class="commentsPage" >
-        <label  class="text-left header" text="Comments" fontSize="20"/>
-         <button class="commentButton"  text="Post a comment" on:tap="{() => {openModal()}}" />
+        <!-- <label  class="text-left header" text="Comments" fontSize="20"/>
+         <button class="commentButton"  text="Post a comment" on:tap="{() => {openModal()}}" /> -->
 
   
             <stackLayout>
                 <image src="{imageURL}"/>
             </stackLayout>
-            <listView items="{comments}"> 
-                <Template let:item>
-                    <stackLayout class="list-background"  >
-                        
+           
 
-                            <gridLayout columns="50, 50" rows="*, *">
-                                <!-- <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" /> -->
-                                <label fontWeight="bold" col="1" row="0" text="{item.username}" />
-                            </gridLayout>
-                        <label class="text-left" text="{item.commentBody}" />
+                <listView height="400" items="{comments}"> 
+                    <Template let:item>
+                        <stackLayout  class="list-background"  >
                             
+    
+                                <gridLayout columns="50, 50" rows="*, *">
+                                    <image  col="0" row="0" class="-thumb img-circle"/>
+                                    <label fontWeight="bold" col="1" row="0" text="{item.username}" />
+                                </gridLayout>
+                                <gridLayout columns="*" rows="50">
+                                    <textView text="{item.commentBody}"/>
+                                    <!-- change back to label if preffered but doensn't display multiline text -->
+                                    
+                                </gridLayout>
+                                
+                                
                             
-                        
-                    </stackLayout>
-                </Template>
-             </listView>
+                        </stackLayout>
+                    </Template>
+                 </listView>
+            
+             <stackLayout>
+                 <textField margin= "10" class="list-background" hint="post a comment"/>
+             </stackLayout>
     </stackLayout>
 </page>
 
