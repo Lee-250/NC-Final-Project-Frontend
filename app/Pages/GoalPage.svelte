@@ -31,10 +31,19 @@ let updates  = [
 
 let users = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 20, totalMilesCompleted: 50, weekStreak: 2, percentComplete: 50}, {user: 'Harry', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 25, totalMilesCompleted: 55, weekStreak: 2, percentComplete: 30}, {user: 'Chris', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 10, totalMilesCompleted: 40, weekStreak: 2, percentComplete: 20}, {user: 'John', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 15, totalMilesCompleted: 45, weekStreak: 2, percentComplete: 70}]
 
-//  const testApi = axios.create({baseURL: "https://mygames-api.herokuapp.com/api"});
 
- const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app"})
+ const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/XGqXEyOP0AanWsqyRqj9"})
 
+ let feed = [];
+
+ onMount(async () => {
+     
+         const {data}  = await devApi.get('/feed')
+         feed = data;
+         console.log(feed);
+         return feed;
+    
+ })
 
  async function openModal() {
     let userPost = {};
@@ -47,12 +56,6 @@ let users = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", milesComp
 }
  
 
-// onMount(async () => {
-    
-//         const {data}  = await devApi.get('/feed')
-//         feed = data;
-   
-// })
 const setProgressBarWidth = (percent) => {
      let columnStr = '';
     columnStr = percent + "*," + (100 - percent) + "*";
@@ -73,9 +76,11 @@ const setProgressBarWidth = (percent) => {
             <tabStrip>
                 <tabStripItem>
                     <label text="Home" />
-                </tabStripItem>
+                    <image src="font://&#xf015;" class="fas t-36" />
+              </tabStripItem>
                 <tabStripItem>
                     <label text="Progress" />
+                    <image src="font://&#xf012;" class="fas fa-signal" />
                 </tabStripItem>
             </tabStrip>
             <tabContentItem >
@@ -94,6 +99,19 @@ const setProgressBarWidth = (percent) => {
                                 textWrap="true" />
                             </gridLayout>
                             <stackLayout height="300" >
+            <tabContentItem class="layout">
+                <stackLayout >
+                      <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
+                      
+                    <listView margin="10" items="{feed}"> 
+                    <Template let:item>
+                        <stackLayout >
+                            <gridLayout columns="50, 50" rows="*, *">
+                                <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}" />
+                                <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                            </gridLayout>
+                            <stackLayout height="300" >
+                                <label col="0" row="1" class="text-left" text="{item.postBody}" />
                                 <scrollView orientation="horizontal">
                                     <stackLayout orientation="horizontal" >
                                         <image src="{item.picture}"/>
@@ -105,6 +123,8 @@ const setProgressBarWidth = (percent) => {
                             <stackLayout class="form">
                             <button on:tap={() => navigate({ page: Comments })} text="Comments" class="button-comments"/>
                             </stackLayout>
+                            <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="View comments" class="button"/>
+          
                         </stackLayout>
                     </Template>
                     </listView>
@@ -119,12 +139,28 @@ const setProgressBarWidth = (percent) => {
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}" />
                             </gridLayout>
                             <stackLayout height="300">
-                                <label text="Miles completed this week: {item.milesCompletedThisWeek}"/>
-                                <label text="Total miles completed: {item.totalMilesCompleted}"/>
-                                <label text="Week streak: {item.weekStreak}" />
+                                <label class="h2" text="Miles completed this week: {item.milesCompletedThisWeek}"/>
+
+
+
                                 <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">
-                                    <stackLayout col="0" class="progressbar-value"></stackLayout>
+                                   
+                                   
+                                    <stackLayout  col="0" class="progressbar-value">
+                                    <label col="0" text="test" />
+                                    </stackLayout>
                                   </gridLayout>
+
+                                  <gridLayout columns="*, *" rows="*, *">
+                                      <label class="h3" col="0" row="0" text="Total miles completed:"/>
+                                      <label class="figures" text="{item.totalMilesCompleted}" col="0" row="1" />
+      
+      
+                                      <label class="h3"  col="1" text="Week streak:" />
+                                      <label class="figures" col="1" row="1" text="{item.weekStreak}"/>
+
+                                  </gridLayout>
+
                             </stackLayout>
                         </stackLayout>
 
@@ -138,18 +174,21 @@ const setProgressBarWidth = (percent) => {
 
 <style>
 
-.progressbar {
-        height: 20;
-        margin: 10;
-        border-radius: 10;
-        border-color: black;
-        border-width: 1;
-    }
-.progressbar-value {
-        background: #337ab7;
-        border-radius: 10;
-    
-    }
+  text-align: center; {
+            font-size:70%;
+        }
+        .progressbar {
+            height: 20;
+            margin: 10;
+            border-radius: 10;
+            border-color: gold;
+            border-width: 2;
+        }
+        .progressbar-value {
+            background: #ffffff;
+            border-radius: 10;
+        
+        }
 
 .button-post {
     background-color: white;
