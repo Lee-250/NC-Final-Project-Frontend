@@ -87,6 +87,7 @@
             background-color: rgb(255, 255, 255);
             border: 10px;
             border-radius: 35%;
+            flex: auto;
             /* margin-bottom: 20;
             margin-top: 10; */
             
@@ -147,7 +148,7 @@
                     </gridLayout>
                     <listView items="{feed}"> 
                     <Template let:item>
-                        <stackLayout >
+                        <stackLayout class="list-background">
                             <gridLayout columns="50, auto, auto" rows="*, *">
                                 <image  col="0" row="0" class="img" src="{item.avatar}" />
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="18"/>
