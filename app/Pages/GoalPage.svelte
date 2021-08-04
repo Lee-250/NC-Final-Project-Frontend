@@ -63,6 +63,11 @@ const setProgressBarWidth = (percent) => {
 
 
 <page >
+    <actionBar title="Achieve" flat="true">
+        <actionItem on:tap="{openModal}"
+		ios.systemIcon="9" ios.position="right"
+		android.systemIcon="ic_menu_share" android.position="actionBar" />
+    </actionBar>
     <stackLayout >
         <bottomNavigation>
             <tabStrip>
@@ -73,19 +78,22 @@ const setProgressBarWidth = (percent) => {
                     <label text="Progress" />
                 </tabStripItem>
             </tabStrip>
-            <tabContentItem class="layout">
+            <tabContentItem >
                 <stackLayout >
-                      <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
-                      
-                    <listView margin="10" items="{updates}"> 
+                    <stackLayout >
+                      <button on:tap="{() => {openModal()}}"text="Post" class="button-post">
+                    </stackLayout>
+                    <listView separatorColor="white" items="{updates}" > 
                     <Template let:item>
                         <stackLayout >
-                            <gridLayout columns="50, 50" rows="*, *">
-                                <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
-                                <label fontWeight="bold" col="1" row="0" text="{item.user}" />
+                            <gridLayout columns="57, auto, *" rows="*, *" backgroundColor="white" class="grid">
+                                <image  col="0" row="0" class="img" src="{item.profilePic}" />
+                                <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="20"
+                                horizontalAlignment="left" />
+                                <label col="2" row="0" text="{item.post}" fontSize="20"
+                                textWrap="true" />
                             </gridLayout>
                             <stackLayout height="300" >
-                                <label col="0" row="1" class="text-left" text="{item.post}" />
                                 <scrollView orientation="horizontal">
                                     <stackLayout orientation="horizontal" >
                                         <image src="{item.picture}"/>
@@ -94,8 +102,9 @@ const setProgressBarWidth = (percent) => {
                                     </stackLayout>
                                 </scrollView>
                             </stackLayout>
-                            <button on:tap={() => navigate({ page: Comments })} text="View comments" class="button"/>
-                            
+                            <stackLayout class="form">
+                            <button on:tap={() => navigate({ page: Comments })} text="Comments" class="button-comments"/>
+                            </stackLayout>
                         </stackLayout>
                     </Template>
                     </listView>
@@ -105,7 +114,7 @@ const setProgressBarWidth = (percent) => {
                 <listView margin="10" items="{users}">
                     <Template let:item>
                         <stackLayout >
-                            <gridLayout columns="50, 50" rows="*, *">
+                            <gridLayout columns="50, 50" rows="*, *" >
                                 <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}" />
                             </gridLayout>
@@ -128,31 +137,51 @@ const setProgressBarWidth = (percent) => {
 </page>
 
 <style>
-    .layout {
-    background-image: url("~/Images/Sky.jpg");
-    background-position: center;
-  }
-    .progressbar {
+
+.progressbar {
         height: 20;
         margin: 10;
         border-radius: 10;
         border-color: black;
         border-width: 1;
     }
-    .progressbar-value {
+.progressbar-value {
         background: #337ab7;
         border-radius: 10;
     
     }
-    .button {
-  display: inline-block;
-  background-color: white;
-  color: black;
-  text-align: center;
-  font-size: 28px;
-  border-radius: 60px;
-  margin-left: 30;
-  margin-right: 30;
+
+.button-post {
+    background-color: white;
+    border-color: black;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    border-radius: 50%;
+    position: center;
+    width: 280;
+    margin-top: 30;
+  }
+  .button-comments {
+    background-color: rgb(99, 54, 232);
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 50%;
+    margin-left: 210;
+    width: 140;
+  }
+  .form {
+  margin-left: 5;
+  margin-right: 5;  
 }
-    
+
+.img {
+    border-radius: 40%;
+}
+
+.grid {
+    border-radius: 40%;
+}
+
 </style>

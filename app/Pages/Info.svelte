@@ -54,7 +54,6 @@
   margin-left: 30;
   margin-right: 30;
   margin-top: 90;
-  flex-grow: 2;  
 }
 
 .title {
