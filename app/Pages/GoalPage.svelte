@@ -67,22 +67,32 @@
     <style>
     
     .figures {
-                
-                text-align: center;
-                font-size:70%;
-            }
-            .progressbar {
-                height: 20;
-                margin: 10;
-                border-radius: 10;
-                border-color: gold;
-                border-width: 2;
-            }
-            .progressbar-value {
-                background: #ffffff;
-                border-radius: 10;
             
-            }
+            text-align: center;
+            font-size:70%;
+            color: #E1BC29;
+        }
+        .progressbar {
+            height: 20;
+            margin: 10;
+            border-radius: 10;
+            border-color: black;
+            border-width: 2;
+        }
+        .progressbar-value {
+            background: #E1BC29;
+            border-radius: 10;
+        
+        }
+        .progressPage {
+            background-color: #4D9DE0;
+        }
+        .list-background {
+            background-color: honeydew;
+            border: 10px;
+            margin: 5px;
+            border-radius: 5;
+        }
     
     </style>
     
