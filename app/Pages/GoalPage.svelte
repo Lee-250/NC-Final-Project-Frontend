@@ -162,7 +162,7 @@
                             <stackLayout height="300" >
                                 <scrollView orientation="horizontal">
                                     <stackLayout orientation="horizontal" >
-                                        <image src="~/"/>
+                                        <image src="{item.imageURL}"/>
                                         <!-- <image src="{item.picture}"/>
                                         <image src="{item.picture}"/> -->
                                     </stackLayout>
