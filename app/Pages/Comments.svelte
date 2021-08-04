@@ -17,7 +17,7 @@
         comments = [result, ...comments];
     }
 
-    const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/XGqXEyOP0AanWsqyRqj9"})
+    const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt"})
 
     let comments = [];
 

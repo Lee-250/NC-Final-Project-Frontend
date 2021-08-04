@@ -7,7 +7,7 @@
     export let postId
 
     let textFromUser = '';
-    const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/XGqXEyOP0AanWsqyRqj9/feed"})
+    const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt/feed"})
 
     const addUpdate = async (textFromUser): Promise<void> => {
         const response = await devApi.put(`/${postId}`, {commentBody: textFromUser, username: "fred"})

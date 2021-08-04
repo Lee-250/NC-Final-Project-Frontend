@@ -1,7 +1,7 @@
 <script lang="typescript">
-import Info from "./Info.svelte";
-import {navigate} from "svelte-native";
-import GoalPage from "./GoalPage.svelte";
+    import Info from "./Info.svelte";
+    import {navigate} from "svelte-native";
+    import GoalPage from "./GoalPage.svelte";
 </script>
 
 <page>
@@ -20,12 +20,12 @@ import GoalPage from "./GoalPage.svelte";
             class="title2"
             fontWeight="bold"></label>
             <stackLayout class="form">
-            <textField class="input input-border" hint="Email" keyboardType="email"
+            <!-- <textField class="input input-border" hint="Email" keyboardType="email"
             autocorrect="false"
             autocapitalizationType="none"
             fontSize="25"
             color="white"
-            textFieldHintColor="white"></textField>
+            textFieldHintColor="white"></textField> -->
             <textField class="input input-border" hint="Username" keyboardType="email"
             autocorrect="false"
             autocapitalizationType="none"

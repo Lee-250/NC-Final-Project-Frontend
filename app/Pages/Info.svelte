@@ -1,9 +1,16 @@
 <script lang="typescript">
-    import Goal from "./Goal.svelte"
-    import {navigate} from "svelte-native"
+  import Goal from "./Goal.svelte"
+  import {navigate} from "svelte-native"
+  import axios from 'axios/dist/axios';
 
+  let username: string;
+  let password: string;
 
-
+  const handleRegister = async () => {
+    const user = {username,password}
+    const response = await axios.post("https://us-central1-final-project-backend-16738.cloudfunctions.net/app/users", )
+    navigate({page : Goal})
+  }
 </script>
 
 <page >
@@ -22,16 +29,22 @@
     <stackLayout row="2" class="form">
     <textField
       class="input input-border"
-      hint="Email"
-      keyboardType="email"
+      hint="Username"
+      keyboardType="username"
       autocorrect="false"
       autocapitalizationType="none"
       fontSize="25"
       color="white"
       textFieldHintColor="white"
+      bind:text="{username}"
     />
-    <textField class="input input-border" color="white" secure="true" hint="Password" fontSize="25" />
-    <button text="Register" on:tap="{()=> navigate({page : Goal})}" class="button" >
+    <textField 
+      class="input input-border" 
+      color="white" secure="true" 
+      hint="Password" fontSize="25" 
+      bind:text="{password}" 
+    />
+    <button text="Register" on:tap="{handleRegister}" class="button" >
   </stackLayout>
   </gridLayout>
 </page>
@@ -46,14 +59,15 @@
   }
 
   .label {
-    padding: 15;
+    padding: 8;
     margin-left: 20;
+    font-size: 20px;
   }
 
   .form {
   margin-left: 30;
   margin-right: 30;
-  margin-top: 90;
+  margin-top: 50;
 }
 
 .title {
