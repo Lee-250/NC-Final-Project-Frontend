@@ -65,65 +65,77 @@ const setProgressBarWidth = (percent) => {
 </script>
 
 <style>
-.progressbar {
-    height: 20;
-    margin: 10;
-    border-radius: 10;
-    border-color: black;
-    border-width: 1;
-}
-.progressbar-value {
-    background: #337ab7;
-    border-radius: 10;
 
-}
+.figures {
+            
+            text-align: center;
+            font-size:70%;
+        }
+        .progressbar {
+            height: 20;
+            margin: 10;
+            border-radius: 10;
+            border-color: gold;
+            border-width: 2;
+        }
+        .progressbar-value {
+            background: #ffffff;
+            border-radius: 10;
+        
+        }
 
 </style>
 
 <page >
-    <stackLayout>
+    <stackLayout >
         <bottomNavigation>
             <tabStrip>
                 <tabStripItem>
                     <label text="Home" />
+                    <image src="font://&#xf015;" class="fas t-36" />
                 </tabStripItem>
+            
                 <tabStripItem>
                     <label text="Progress" />
+                    <image src="font://&#xf012;" class="fas fa-signal" />
                 </tabStripItem>
             </tabStrip>
-            <tabContentItem >
-                <stackLayout backgroundColor="#92CD92" class="m-x-auto" >
-                    <label  class="text-left header" text="GoalPage" fontSize="20"/>
-                    <gridLayout columns="1*, *" class="progressbar">
-                        <stackLayout text="30" col="0" class="progressbar-value"></stackLayout>
-                      </gridLayout>
+
+
+            <tabContentItem class="layout">
+                <stackLayout >
+                      <button on:tap="{() => {openModal()}}"text="Post" class="button"></button>
                       
-                      <button on:tap="{() => {openModal()}}"text="Post"></button>
-                      
-                    <listView height="650" margin="10" backgroundColor="#E9FDE3"items="{feed}"> 
+                    <listView margin="10" items="{feed}"> 
                     <Template let:item>
                         <stackLayout >
                             <gridLayout columns="50, 50" rows="*, *">
-                                <!-- <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" /> -->
+                                <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}" />
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}" />
                             </gridLayout>
-                            <stackLayout height="300">
+                            <stackLayout height="300" >
                                 <label col="0" row="1" class="text-left" text="{item.postBody}" />
                                 <scrollView orientation="horizontal">
-                                    <stackLayout orientation="horizontal">
-                                       
+                                    <stackLayout orientation="horizontal" >
+                                        <image src="{item.picture}"/>
+                                        <image src="{item.picture}"/>
+                                        <image src="{item.picture}"/>
                                     </stackLayout>
                                 </scrollView>
                             </stackLayout>
-                            <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId} })} text="View comments" />
+                            <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="View comments" class="button"/>
                             
                         </stackLayout>
                     </Template>
                     </listView>
                 </stackLayout>
             </tabContentItem>
-            <tabContentItem >
-                <listView margin="10" backgroundColor="#E9FDE3" items="{users}">
+
+
+            
+
+            <tabContentItem class="layout">
+                <listView margin="10" items="{users}">
                     <Template let:item>
                         <stackLayout >
                             <gridLayout columns="50, 50" rows="*, *">
@@ -131,13 +143,33 @@ const setProgressBarWidth = (percent) => {
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}" />
                             </gridLayout>
                             <stackLayout height="300">
-                                <label text="Miles completed this week: {item.milesCompletedThisWeek}"/>
-                                <label text="Total miles completed: {item.totalMilesCompleted}"/>
-                                <label text="Week streak: {item.weekStreak}" />
+                                <label class="h2" text="Miles completed this week: {item.milesCompletedThisWeek}"/>
+
+
+
                                 <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">
-                                    <stackLayout col="0" class="progressbar-value"></stackLayout>
+                                   
+                                   
+                                    <stackLayout  col="0" class="progressbar-value">
+                                    <label col="0" text="test" />
+                                    </stackLayout>
                                   </gridLayout>
-                                  <button text="progress bar"/>
+
+
+
+                                  <gridLayout columns="*, *" rows="*, *">
+                                      <label class="h3" col="0" row="0" text="Total miles completed:"/>
+                                      <label class="figures" text="{item.totalMilesCompleted}" col="0" row="1" />
+      
+      
+                                      <label class="h3"  col="1" text="Week streak:" />
+                                      <label class="figures" col="1" row="1" text="{item.weekStreak}"/>
+
+                                  </gridLayout>
+
+
+
+
                             </stackLayout>
                         </stackLayout>
 
