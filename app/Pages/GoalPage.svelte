@@ -128,6 +128,7 @@
                                     </stackLayout>career"
                                 </scrollView>
                             </stackLayout>
+
                             {/if}
                             <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})} text="View comments" class="button"/>
                         </stackLayout>
@@ -156,6 +157,7 @@
                                       <label class="h3"  col="1" text="Week streak:" />
                                       <label class="figures" col="1" row="1" text="{item.weekStreak}"/>
                                   </gridLayout>
+
                             </stackLayout>
                         </Template>
                     </listView>
