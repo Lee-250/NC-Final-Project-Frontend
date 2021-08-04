@@ -134,10 +134,10 @@
     
                 
     
-                <tabContentItem class="layout">
-                    <listView margin="10" items="{users}">
-                        <Template let:item>
-                            <stackLayout >
+                <tabContentItem class="layout progressPage">
+                    <listView items="{users}">
+                        <Template class="list-background" margin="10"  let:item>
+                            <stackLayout class="list-background"  >
                                 <gridLayout columns="50, 50" rows="*, *">
                                     <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}" />
                                     <label fontWeight="bold" col="1" row="0" text="{item.user}" />
