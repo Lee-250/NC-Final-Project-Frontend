@@ -39,7 +39,7 @@
 <style>
   .layout {
     background-image: url("~/Images/Timber.jpg");
-    background-position: center;
+    background-position: left;
   }
   .action-bar {
     opacity: 0;

@@ -147,7 +147,7 @@
                     </gridLayout>
                     <listView items="{feed}"> 
                     <Template let:item>
-                        <stackLayout class="list-background">
+                        <stackLayout >
                             <gridLayout columns="50, auto, auto" rows="*, *">
                                 <image  col="0" row="0" class="img" src="{item.avatar}" />
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="18"/>
