@@ -80,7 +80,7 @@
             background-color: rgb(255, 255, 255);
             border: 10px;
             border-radius: 35%;
-            flex: auto;
+            /* flex: auto; */
             /* margin-bottom: 20;
             margin-top: 10; */
             
@@ -155,7 +155,7 @@
                                         <image src="~/"/>
                                         <!-- <image src="{item.picture}"/>
                                         <image src="{item.picture}"/> -->
-                                    </stackLayout>career"
+                                    </stackLayout>
                                 </scrollView>
                             </stackLayout>
 
