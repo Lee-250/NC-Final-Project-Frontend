@@ -62,7 +62,7 @@
           <!-- </gridLayout> --> -->
           <listPicker items="{items}" class="picker"
             bind:selectedIndex={selectedCategory}></listPicker>
-            <label text="Select an activity" fontSize="30"
+            <label text="Enter an activity" fontSize="30"
             horizontalAlignment="center"
             class="label"
             color="white"
