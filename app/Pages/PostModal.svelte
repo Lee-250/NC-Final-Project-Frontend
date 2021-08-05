@@ -21,7 +21,7 @@
     let imageURL = ''
 
     const sendImageURL = () => {
-        imageURL = "https://www.ride25.com/wp-content/uploads/2014/03/tired-racer-ride-25.jpg";
+        imageURL = "https://i.imgur.com/66LTTu5.jpg";
         console.log(imageURL);
     }
 
@@ -96,7 +96,9 @@
                     
                     <image src="https://www.ride25.com/wp-content/uploads/2014/03/tired-racer-ride-25.jpg"/>
                     <stackLayout></stackLayout>
-                    <image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC7MYEGTlm5cxtWNfIAn7WJL1635u4pmmZUzZVTnHRBYT6_xHatIsqwKvpdHX1alMVKoU&usqp=CAU"/>
+                    <stackLayout></stackLayout>
+                    <stackLayout></stackLayout>
+                    <image src="https://i.imgur.com/66LTTu5.jpg"/>
             </stackLayout> 
         </scrollView>
     </stackLayout>

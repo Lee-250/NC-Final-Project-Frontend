@@ -6,6 +6,7 @@
   let someDate: Date;
   let goalTitle: string;
   let selectedCategory: string;
+  let goalMiles: number;
 
   const items = ["Health", "Fitness", "Skill", "Social", "Career"] 
  
@@ -78,7 +79,7 @@
             <textField hint="e.g. 30" fontSize="20"
             horizontalAlignment="center"
             color="white"
-            bind:text="{goalTitle}"></textField>
+            bind:text="{goalMiles}"></textField>
             
             <label text="Completion date" fontSize="30"
             horizontalAlignment="center"
