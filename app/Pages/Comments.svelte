@@ -36,16 +36,16 @@
 
     let commentBody = "";
     const handleSubmit = async() => {
-        // const comment = {
-        //     username: "john",
-        //     commentBody,
-        //     avatar: "https://i.imgur.com/4zxIRRj.jpg"
-        // }
         const comment = {
-            username: "Harry",
+            username: "john",
             commentBody,
-            avatar: "https://i.imgur.com/5N4uXPX.jpg"
+            avatar: "https://i.imgur.com/4zxIRRj.jpg"
         }
+        // const comment = {
+        //     username: "Harry",
+        //     commentBody,
+        //     avatar: "https://i.imgur.com/5N4uXPX.jpg"
+        // }
         // const comment = {
         //     username: "Lee",
         //     commentBody,
