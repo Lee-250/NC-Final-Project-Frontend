@@ -225,7 +225,7 @@
                 <listView items="{users}">
                     <Template let:item>
                         <stackLayout class="list-background" >
-                            <gridLayout columns="50, auto" rows="*, *">
+                            <gridLayout columns="65, auto" rows="*, *">
                                 <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}"/>
                                 <label fontWeight="bold" col="1" row="0" text="{item.username}" fontSize="22"/>
                             </gridLayout>
