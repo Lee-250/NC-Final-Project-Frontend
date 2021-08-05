@@ -55,24 +55,25 @@ let value = 0;
   background-color: white;
   color: black;
   text-align: center;
-  font-size: 28px;
+  font-size: 20px;
   border-radius: 60px;
-  margin-left: 60;
-  margin-right: 60;
+  margin-left: 80;
+  margin-right: 80;
 }
 .button-photo {
   display: inline-block;
   background-color: white;
   color: black;
   text-align: center;
-  font-size: 28px;
+  font-size: 20px;
   border-radius: 60px;
   margin-bottom: 70;
-  margin-left: 60;
-  margin-right: 60;
+  margin-left: 80;
+  margin-right: 80;
 }
 .post-update {
-    background-color: white;
+    background-color: rgb(208, 237, 251);
+    height: 100;
     border-color: black;
     border-radius: 10px;
     text-align: center;
@@ -95,7 +96,7 @@ let value = 0;
 
         
     <label text="Create a post" textAlign="center" color="white" fontWeight="bold" fontSize="34"/>
-    <textField hint="start typing" class="post-update" textFieldHintColor="white" fontSize="25" bind:text="{textFromUser}" ></textField>
+    <textField hint="start typing..." height="50" class="post-update" bind:text="{textFromUser}" ></textField>
     <stackLayout  height="260" >
         <!-- <label text="Post a picture" color="white" fontWeight="bold" fontSize="34" /> -->
         <scrollView orientation="horizontal" >

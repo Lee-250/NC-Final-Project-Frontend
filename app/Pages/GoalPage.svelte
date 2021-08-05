@@ -96,7 +96,7 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
         .list-background {
             background-color: rgb(255, 255, 255);
             border: 10px;
-            border-radius: 35%;
+            border-radius: 20%;
             /* flex: auto; */
             /* margin-bottom: 20;
             margin-top: 10; */
@@ -123,7 +123,7 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
     background-color: rgb(255, 255, 255);
     color: black;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     border-radius: 50%;
     width: 140;
   }
