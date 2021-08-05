@@ -70,7 +70,7 @@
             horizontalAlignment="center"
             color="white"
             bind:text="{goalTitle}"></textField>
-            <label text="How many miles per week?" fontSize="30"
+            <label text="Miles per week?" fontSize="30"
             horizontalAlignment="center"
             class="label"
             color="white"
@@ -133,9 +133,11 @@
     background-color: white;
     color: black;
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
     border-radius: 50%;
     position: center;
     margin-top: 20;
+    margin-left: 60;
+    margin-right: 60;
   }
 </style>
