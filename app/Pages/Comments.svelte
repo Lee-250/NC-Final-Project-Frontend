@@ -33,6 +33,17 @@
         console.log(postId);
         return comments;
     })
+
+    let commentBody = "";
+    const handleSubmit = async() => {
+        const comment = {
+            username: "john",
+            commentBody,
+            avatar: "https://i.imgur.com/4zxIRRj.jpg"
+        }
+        comments = [comment, ...comments];
+        const response = await devApi.put(`/feed/${postId}`, comment);
+    }
 </script>
 
 <style>
@@ -108,8 +119,8 @@
             
              <stackLayout class="bottom">
                  <gridLayout columns="300, 102" rows="65">
-                 <textField col="0" row="0" class="--input-border" margin= "10" hint="add a comment..." textAlignment="center"/>
-                 <button col="1" row="0" text="Submit" class="btn" />
+                 <textField col="0" row="0" class="--input-border" margin= "10" hint="add a comment..." textAlignment="center" bind:text="{commentBody}"/>
+                 <button col="1" row="0" text="Submit" class="btn" on:tap="{handleSubmit}" />
                 </gridLayout>
              </stackLayout>
     </stackLayout>
