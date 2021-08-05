@@ -1,138 +1,115 @@
 <script lang="typescript"> 
-
-    import { BottomNavigation, StackLayout, TabStripItem } from '@nativescript/core';
-    import { dateProperty } from '@nativescript/core/ui/date-picker';
     import {navigate} from "svelte-native";
     import axios from 'axios/dist/axios';
     import { onMount } from 'svelte';
     import {Template} from 'svelte-native/components';
     import {showModal} from 'svelte-native';
-    import PostModal from './PostModal.svelte';
-    import { itemHeightProperty } from '@nativescript/core/ui/layouts/wrap-layout';
-    import CommentModal from './CommentModal.svelte';
+    import PostModal from './PostModal.svelte'; 
     import Comments from './Comments.svelte';
-import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
 
-    // { user: string, post: string, profilePic: string, picture: string }[] 
+    const loggedInUser = "Lee250";
     
-    let updates  = [
-            { user: 'Lee', post: 'Just got back from a 450 mile ride, too easy',
-                profilePic: "~/Images/blankProfilePic.png",
-                picture: 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1'},
-    
-             {user: 'Harry', post: 'I love bikes me', profilePic: "~/Images/blankProfilePic.png", picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Floyd-landis-toctt.jpg/1200px-Floyd-landis-toctt.jpg'}, 
-    
-             {user: 'Chris', post: 'Quick 5 miles', profilePic: "~/Images/blankProfilePic.png", picture: 'https://cdn.road.cc/sites/default/files/styles/main_width/public/irb1oxnwkljulmqul-ya1wpvbi5z3kjnoawnpi-kk-2048x1536.jpg' },
-             
-             {user: 'John', post: 'Big ride planned this weekend!!', profilePic: "~/Images/blankProfilePic.png", picture: 'https://media2.fdncms.com/sevendaysvt/imager/u/original/21581403/sports1-1-b8504bdcfa56c38a.jpg'}]
-    
-    
-    let users = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 20, totalMilesCompleted: 50, weekStreak: 2, percentComplete: 50}, {user: 'Harry', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 25, totalMilesCompleted: 55, weekStreak: 2, percentComplete: 30}, {user: 'Chris', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 10, totalMilesCompleted: 40, weekStreak: 2, percentComplete: 20}, {user: 'John', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 15, totalMilesCompleted: 45, weekStreak: 2, percentComplete: 70}]
-    
-    
-     const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt"})
-    
-     let feed = [];
-    
-     onMount(async () => {
-        const {data}  = await devApi.get('/feed')
+  
+    const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt"})
+
+    let feed = [];
+    let users = [];
+
+    onMount(async () => {
+        const {data}  = await devApi.get('/feed');
         feed = data;
-     })
+    })
 
-     
-    
-     async function openModal() {
-        let userPost = {};
-        let result:any  = await showModal({
-                page: PostModal,
-                props: { userPost: userPost },
-            });
-            updates = [result, ...updates];
-        
+    onMount(async () => {
+        const {data}  = await axios.get('https://us-central1-final-project-backend-16738.cloudfunctions.net/app/users');
+        users = data;
+    })
+
+    async function openModal() {
+        await showModal({
+            page: PostModal,
+            props: {loggedInUser, users, feed: feed},
+        });    
+        const {data}  = await devApi.get('/feed');
+        feed = data;
     }
      
-    
     const setProgressBarWidth = (percent) => {
          let columnStr = '';
         columnStr = percent + "*," + (100 - percent) + "*";
         return columnStr;
-     }
+    }
+</script>
     
-    </script>
-    
-    <style>
+<style>
     .figure {
-            
-            /* text-align: center; */
-            margin-left: 30;
-            font-size:70%;
-        }
-        .figure2 {
-            margin-left: 70;
-            font-size:70%;
-        }
-        .week-streak {
-            margin-left: 30;
-        }
-        .total-miles {
-            margin-left: 28;
-        }
-        .progressbar {
-            height: 20;
-            margin: 10;
-            border-radius: 10;
-            border-color: black;
-            border-width: 2;
-            margin-bottom: 50;
-        }
-        .progressbar-value {
-            background: #33ff00;
-            border-radius: 10;
         
-        }
-        .week {
-            margin-left: 30;
-        }
-        .list-background {
-            background-color: rgb(255, 255, 255);
-            border: 10px;
-            border-radius: 35%;
-            /* flex: auto; */
-            /* margin-bottom: 20;
-            margin-top: 10; */
-            
-        }
-        .layout {
-            background-image: url("~/Images/Timber.jpg");
-            background-position: left;
-        }
-        .button-comments {
-    background-color: rgb(255, 255, 255);
-    border-style: solid;
-    border-width: 5px;
-    border-color: black;
-    color: black;
-    text-align: center;
-    font-size: 16px;
-    border-radius: 50%;
-    margin-left: 230;
-    width: 110;
-  }
-
-  .button-post {
-    background-color: rgb(255, 255, 255);
-    color: black;
-    text-align: center;
-    font-size: 16px;
-    border-radius: 50%;
-    width: 140;
-  }
-
-  .grid-layout {
-      margin-top: 22;
-  }
-  
-
+        /* text-align: center; */
+        margin-left: 30;
+        font-size:70%;
+    }
+    .figure2 {
+        margin-left: 70;
+        font-size:70%;
+    }
+    .week-streak {
+        margin-left: 30;
+    }
+    .total-miles {
+        margin-left: 28;
+    }
+    .progressbar {
+        height: 20;
+        margin: 10;
+        border-radius: 10;
+        border-color: black;
+        border-width: 2;
+        margin-bottom: 50;
+    }
+    .progressbar-value {
+        background: #33ff00;
+        border-radius: 10;
+    
+    }
+    .week {
+        margin-left: 30;
+    }
+    .list-background {
+        background-color: rgb(255, 255, 255);
+        border: 10px;
+        border-radius: 35%;
+        /* flex: auto; */
+        /* margin-bottom: 20;
+        margin-top: 10; */
+        
+    }
+    .layout {
+        background-image: url("~/Images/Timber.jpg");
+        background-position: left;
+    }
+    .button-comments {
+        background-color: rgb(255, 255, 255);
+        border-style: solid;
+        border-width: 5px;
+        border-color: black;
+        color: black;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 50%;
+        margin-left: 230;
+        width: 110;
+    }
+    .button-post {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 50%;
+        width: 140;
+    }
+    .grid-layout {
+        margin-top: 22;
+    }
 </style>
 
 <page >
@@ -197,23 +174,22 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
                     <Template let:item>
                         <stackLayout class="list-background" >
                             <gridLayout columns="50, auto" rows="*, *">
-                                <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}"/>
-                                <label fontWeight="bold" col="1" row="0" text="{item.user}" fontSize="22"/>
+                                <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}"/>
+                                <label fontWeight="bold" col="1" row="0" text="{item.username}" fontSize="22"/>
                             </gridLayout>
                             <stackLayout height="290">
-                                <label class="week" text="Miles completed this week: {item.milesCompletedThisWeek}" fontSize="22"/>
-                                <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">                                                                 
+                                <label class="week" text="Miles completed this week: {item.progress}" fontSize="22"/>
+                                <gridLayout columns="{setProgressBarWidth((item.progress/50) * 100)}" class="progressbar">                                                                 
                                      <stackLayout  col="0" class="progressbar-value">
                                     <label col="0" text="test" />
                                     </stackLayout>
                                   </gridLayout>
                                   <gridLayout columns="*, *" rows="30, *">
                                       <label class="total-miles" col="0" row="0" text="Total miles:" fontSize="22"/>
-                                      <label class="figure" text="{item.totalMilesCompleted}" col="0" row="1" fontWeight="bold"/>   
+                                      <label class="figure" text="{item.totalProgress}" col="0" row="1" fontWeight="bold"/>   
                                       <label class="week-streak"  col="1" text="Week streak:" fontSize="22"/>
                                       <label class="figure2" col="1" row="1" text="{item.weekStreak}" fontWeight="bold"/>
                                   </gridLayout>
-
                             </stackLayout>
                         </Template>
                     </listView>
