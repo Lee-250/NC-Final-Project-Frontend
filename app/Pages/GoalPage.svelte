@@ -1,68 +1,49 @@
 <script lang="typescript"> 
-
-    import { BottomNavigation, StackLayout, TabStripItem, TextView } from '@nativescript/core';
-    import { dateProperty } from '@nativescript/core/ui/date-picker';
     import {navigate} from "svelte-native";
     import axios from 'axios/dist/axios';
     import { onMount } from 'svelte';
     import {Template} from 'svelte-native/components';
     import {showModal} from 'svelte-native';
-    import PostModal from './PostModal.svelte';
-    import { itemHeightProperty } from '@nativescript/core/ui/layouts/wrap-layout';
-    import CommentModal from './CommentModal.svelte';
+    import PostModal from './PostModal.svelte'; 
     import Comments from './Comments.svelte';
-import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
 
-    // { user: string, post: string, profilePic: string, picture: string }[] 
+    const loggedInUser = "Lee250";
     
-    let updates  = [
-            { user: 'Lee', post: 'Just got back from a 450 mile ride, too easy',
-                profilePic: "~/Images/blankProfilePic.png",
-                picture: 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2019/09/crying-cyclist.jpg?w=1000&h=576&crop=1'},
-    
-             {user: 'Harry', post: 'I love bikes me', profilePic: "~/Images/blankProfilePic.png", picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Floyd-landis-toctt.jpg/1200px-Floyd-landis-toctt.jpg'}, 
-    
-             {user: 'Chris', post: 'Quick 5 miles', profilePic: "~/Images/blankProfilePic.png", picture: 'https://cdn.road.cc/sites/default/files/styles/main_width/public/irb1oxnwkljulmqul-ya1wpvbi5z3kjnoawnpi-kk-2048x1536.jpg' },
-             
-             {user: 'John', post: 'Big ride planned this weekend!!', profilePic: "~/Images/blankProfilePic.png", picture: 'https://media2.fdncms.com/sevendaysvt/imager/u/original/21581403/sports1-1-b8504bdcfa56c38a.jpg'}]
-    
-    
-    let users = [{user: 'Lee', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 20, totalMilesCompleted: 50, weekStreak: 2, percentComplete: 50}, {user: 'Harry', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 25, totalMilesCompleted: 55, weekStreak: 2, percentComplete: 30}, {user: 'Chris', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 10, totalMilesCompleted: 40, weekStreak: 2, percentComplete: 20}, {user: 'John', profilePic: "~/Images/blankProfilePic.png", milesCompletedThisWeek: 15, totalMilesCompleted: 45, weekStreak: 2, percentComplete: 70}]
-    
-    
-     const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt"})
-    
-     let feed = [];
-    
-     onMount(async () => {
-        const {data}  = await devApi.get('/feed')
+  
+    const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt"})
+
+    let feed = [];
+    let users = [];
+
+    onMount(async () => {
+        const {data}  = await devApi.get('/feed');
         feed = data;
-     })
+    })
 
-     
-    
-     async function openModal() {
-        let userPost = {};
-        let result:any  = await showModal({
-                page: PostModal,
-                props: { userPost: userPost },
-            });
-            updates = [result, ...updates];
-        
+    onMount(async () => {
+        const {data}  = await axios.get('https://us-central1-final-project-backend-16738.cloudfunctions.net/app/users');
+        users = data;
+    })
+
+    async function openModal() {
+        await showModal({
+            page: PostModal,
+            props: {loggedInUser, users, feed: feed},
+        });    
+        const {data}  = await devApi.get('/feed');
+        feed = data;
+        users[3].progress = 40
     }
      
-    
     const setProgressBarWidth = (percent) => {
          let columnStr = '';
         columnStr = percent + "*," + (100 - percent) + "*";
         return columnStr;
-     }
+    }
+</script>
     
-    </script>
-    
-    <style>
-    .figure {
-            
+<style>
+    .figure {           
             /* text-align: center; */
             margin-left: 30;
             font-size:70%;
@@ -77,19 +58,34 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
         .total-miles {
             margin-left: 28;
         }
-        .progressbar {
-            height: 20;
+        .goal-progressbar {
+            height: 30;
             margin: 10;
-            border-radius: 10;
+            border-radius: 3;
             border-color: black;
-            border-width: 2;
-            margin-bottom: 50;
+            border-width: 1.5;
+            margin-bottom: 20;
         }
-        .progressbar-value {
-            background: #33ff00;
-            border-radius: 10;
+        .goal-progressbar-value {
+            background: white;
+            border-radius: 3;
         
         }
+
+        .progressbar {
+            height: 30;
+            margin: 10;
+            border-radius: 3;
+            border-color: black;
+            border-width: 2;
+            margin-bottom: 20;
+        }
+        .progressbar-value {
+            background: goldenrod;
+            border-radius: 3;
+        
+        }
+        
         .week {
             margin-left: 30;
         }
@@ -122,6 +118,7 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
   .grid-layout {
       margin-top: 22;
   }
+
   .commentNum {
       margin-left: 13;
       margin-bottom: 8;
@@ -168,6 +165,23 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
                       color="white"
                       fontWeight="bold" />
                     </gridLayout>
+                    <stackLayout>
+                        <label  text="Cycle 30 miles per week"
+                      fontSize="20"
+                      horizontalAlignment="center"
+                      color="white"
+                      fontWeight="bold"
+                      margin-top="10" />
+                      
+                    </stackLayout>
+                    <gridLayout columns="{setProgressBarWidth(30)}" class="goal-progressbar">                                                                 
+                        <stackLayout  col="0" class="goal-progressbar-value">
+                       <label verticalAlignment="center" class="text-center" text="Day 10" />
+                       </stackLayout>
+                       <stackLayout col="1">
+                        <label verticalAlignment="center" class="text-center" text="Only 20 days to go!" />
+                       </stackLayout>
+                     </gridLayout>
                     <listView items="{feed}"> 
                     <Template let:item>
                         <stackLayout class="list-background">
@@ -206,23 +220,27 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
                     <Template let:item>
                         <stackLayout class="list-background" >
                             <gridLayout columns="50, auto" rows="*, *">
-                                <image  col="0" row="0" class="-thumb img-circle" src="{item.profilePic}"/>
-                                <label fontWeight="bold" col="1" row="0" text="{item.user}" fontSize="22"/>
+                                <image  col="0" row="0" class="-thumb img-circle" src="{item.avatar}"/>
+                                <label fontWeight="bold" col="1" row="0" text="{item.username}" fontSize="22"/>
                             </gridLayout>
                             <stackLayout height="290">
-                                <label class="week" text="Miles completed this week: {item.milesCompletedThisWeek}" fontSize="22"/>
-                                <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">                                                                 
+
+                                <label class="week" text="Miles completed this week: {item.progress}" fontSize="22"/>
+                                <gridLayout columns="{setProgressBarWidth((item.progress/50) * 100)}" class="progressbar">                                                                 
+
                                      <stackLayout  col="0" class="progressbar-value">
-                                    <label col="0" text="test" />
+                                    <label class="text-center" col="0" text="{item.milesCompletedThisWeek} miles" />
+                                    </stackLayout>
+                                    <stackLayout col="1" >
+                                        <label class="text-center" text="only {30 - item.milesCompletedThisWeek} to go" />
                                     </stackLayout>
                                   </gridLayout>
                                   <gridLayout columns="*, *" rows="30, *">
                                       <label class="total-miles" col="0" row="0" text="Total miles:" fontSize="22"/>
-                                      <label class="figure" text="{item.totalMilesCompleted}" col="0" row="1" fontWeight="bold"/>   
+                                      <label class="figure" text="{item.totalProgress}" col="0" row="1" fontWeight="bold"/>   
                                       <label class="week-streak"  col="1" text="Week streak:" fontSize="22"/>
                                       <label class="figure2" col="1" row="1" text="{item.weekStreak}" fontWeight="bold"/>
                                   </gridLayout>
-
                             </stackLayout>
                         </Template>
                     </listView>

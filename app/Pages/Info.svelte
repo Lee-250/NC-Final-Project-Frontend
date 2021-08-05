@@ -29,7 +29,11 @@
         fontWeight="bold"
       />
       <stackLayout />
-      <gridLayout columns="50, 325" rows="50, 50, 50, 50" class="bullet-points">
+      <gridLayout
+        columns="50, 325"
+        rows="50, 50, 50, 50, 50"
+        class="bullet-points"
+      >
         <image row="0" col="0" src="font://&#xf091;" class="fas fa-trophy" />
         <label
           row="0"
@@ -69,7 +73,22 @@
           class="label"
           fontSize="28"
           color="white"
-          text="Post updates and track everyones progress"
+          text="Post updates"
+          textWrap="true"
+        />
+        <image
+          row="4"
+          col="0"
+          src="font://&#xf201;"
+          class="fas fa-chart-line"
+        />
+        <label
+          row="4"
+          col="1"
+          class="label"
+          fontSize="28"
+          color="white"
+          text="Track progress"
           textWrap="true"
         />
       </gridLayout>
@@ -115,7 +134,7 @@
 
   .label {
     padding: 8;
-    margin-left: 10;
+    margin-left: 35;
     font-size: 20px;
   }
 
@@ -141,7 +160,7 @@
 
   .fas {
     margin: 0;
-    margin-left: 25;
+    margin-left: 65;
     padding: 0;
     width: 30;
     color: white;

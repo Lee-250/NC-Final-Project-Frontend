@@ -1,6 +1,5 @@
 <script lang="typescript">
     import axios from 'axios/dist/axios';
-    
     const { closeModal }=require("svelte-native");
 
     export let userComment;
@@ -8,11 +7,9 @@
 
     let textFromUser = '';
     const devApi = axios.create({baseURL: "https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt/feed"})
-
     const addUpdate = async (textFromUser): Promise<void> => {
         const response = await devApi.put(`/${postId}`, {commentBody: textFromUser, username: "fred"})
         userComment = {username: 'fred', commentBody: textFromUser, profilePic: "~/Images/blankProfilePic.png"};
-        // console.log(userComment)
         closeModal(userComment);
     }
 </script>
