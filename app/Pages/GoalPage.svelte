@@ -77,19 +77,34 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
         .total-miles {
             margin-left: 28;
         }
-        .progressbar {
-            height: 20;
+        .goal-progressbar {
+            height: 30;
             margin: 10;
-            border-radius: 10;
+            border-radius: 3;
             border-color: black;
-            border-width: 2;
-            margin-bottom: 50;
+            border-width: 1.5;
+            margin-bottom: 20;
         }
-        .progressbar-value {
-            background: #33ff00;
-            border-radius: 10;
+        .goal-progressbar-value {
+            background: white;
+            border-radius: 3;
         
         }
+
+        .progressbar {
+            height: 30;
+            margin: 10;
+            border-radius: 3;
+            border-color: black;
+            border-width: 2;
+            margin-bottom: 20;
+        }
+        .progressbar-value {
+            background: goldenrod;
+            border-radius: 3;
+        
+        }
+        
         .week {
             margin-left: 30;
         }
@@ -150,7 +165,7 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
             </tabStrip>
             <tabContentItem class="layout">
                 <stackLayout >
-                    <gridLayout columns="250, 150" rows="40, 40" class="grid-layout">
+                    <gridLayout columns="250, 150" rows="40, 30" class="grid-layout">
                       <button on:tap="{() => {openModal()}}"text="Post" class="button-post" col="1" row="0"></button>
                       <label col="0" row="0" text="Achieve 🏆"
                       fontSize="40"
@@ -158,6 +173,23 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
                       color="white"
                       fontWeight="bold" />
                     </gridLayout>
+                    <stackLayout>
+                        <label  text="Cycle 30 miles per week"
+                      fontSize="20"
+                      horizontalAlignment="center"
+                      color="white"
+                      fontWeight="bold"
+                      margin-top="10" />
+                      
+                    </stackLayout>
+                    <gridLayout columns="{setProgressBarWidth(30)}" class="goal-progressbar">                                                                 
+                        <stackLayout  col="0" class="goal-progressbar-value">
+                       <label verticalAlignment="center" class="text-center" text="Day 10" />
+                       </stackLayout>
+                       <stackLayout col="1">
+                        <label verticalAlignment="center" class="text-center" text="Only 20 days to go!" />
+                       </stackLayout>
+                     </gridLayout>
                     <listView items="{feed}"> 
                     <Template let:item>
                         <stackLayout class="list-background">
@@ -201,10 +233,14 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
                                 <label fontWeight="bold" col="1" row="0" text="{item.user}" fontSize="22"/>
                             </gridLayout>
                             <stackLayout height="290">
-                                <label class="week" text="Miles completed this week: {item.milesCompletedThisWeek}" fontSize="22"/>
+                                <label text="Week 2: Current Progress" fontSize="22" />
+                                <!-- <label class="week" text="Miles completed this week: {item.milesCompletedThisWeek}" fontSize="22"/> -->
                                 <gridLayout columns="{setProgressBarWidth(item.percentComplete)}" class="progressbar">                                                                 
                                      <stackLayout  col="0" class="progressbar-value">
-                                    <label col="0" text="test" />
+                                    <label class="text-center" col="0" text="{item.milesCompletedThisWeek} miles" />
+                                    </stackLayout>
+                                    <stackLayout col="1" >
+                                        <label class="text-center" text="only {30 - item.milesCompletedThisWeek} to go" />
                                     </stackLayout>
                                   </gridLayout>
                                   <gridLayout columns="*, *" rows="30, *">
