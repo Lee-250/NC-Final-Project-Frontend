@@ -36,11 +36,21 @@
 
     let commentBody = "";
     const handleSubmit = async() => {
+        // const comment = {
+        //     username: "john",
+        //     commentBody,
+        //     avatar: "https://i.imgur.com/4zxIRRj.jpg"
+        // }
         const comment = {
-            username: "john",
+            username: "Harry",
             commentBody,
-            avatar: "https://i.imgur.com/4zxIRRj.jpg"
+            avatar: "https://i.imgur.com/5N4uXPX.jpg"
         }
+        // const comment = {
+        //     username: "Lee",
+        //     commentBody,
+        //     avatar: "https://i.imgur.com/DSuXVcf.jpg"
+        // }
         comments = [comment, ...comments];
         const response = await devApi.put(`/feed/${postId}`, comment);
     }
