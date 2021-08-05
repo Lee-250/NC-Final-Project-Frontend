@@ -1,6 +1,6 @@
 <script lang="typescript"> 
 
-    import { BottomNavigation, StackLayout, TabStripItem } from '@nativescript/core';
+    import { BottomNavigation, StackLayout, TabStripItem, TextView } from '@nativescript/core';
     import { dateProperty } from '@nativescript/core/ui/date-picker';
     import {navigate} from "svelte-native";
     import axios from 'axios/dist/axios';
@@ -106,18 +106,9 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
             background-image: url("~/Images/Timber.jpg");
             background-position: left;
         }
-        .button-comments {
-    background-color: rgb(255, 255, 255);
-    border-style: solid;
-    border-width: 5px;
-    border-color: black;
-    color: black;
-    text-align: center;
-    font-size: 16px;
-    border-radius: 50%;
-    margin-left: 230;
-    width: 110;
-  }
+    .commentButton {
+        margin-bottom: 8;
+    }
 
   .button-post {
     background-color: rgb(255, 255, 255);
@@ -131,7 +122,25 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
   .grid-layout {
       margin-top: 22;
   }
-  
+  .commentNum {
+      margin-left: 13;
+      margin-bottom: 8;
+  }
+  .fas.fa-trophy {
+    margin: 0;
+    padding: 0;
+    margin-right: 20;
+    height: 28;
+    width: 28;
+    color: white;
+  }
+  .far.fa-comment-alt {
+      margin-bottom: 6;
+      margin-right: 2;
+  }
+  .-thumb.img-circle {
+      margin-left: 22;
+  }
 
 </style>
 
@@ -150,9 +159,10 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
             </tabStrip>
             <tabContentItem class="layout">
                 <stackLayout >
-                    <gridLayout columns="250, 150" rows="40, 40" class="grid-layout">
-                      <button on:tap="{() => {openModal()}}"text="Post" class="button-post" col="1" row="0"></button>
-                      <label col="0" row="0" text="Achieve 🏆"
+                    <gridLayout columns="194, 50, 150" rows="50" class="grid-layout">
+                      <button on:tap="{() => {openModal()}}"text="Post" class="button-post" col="2" row="0"></button>
+                      <image col="1" row="0" src="font://&#xf091;" class="fas fa-trophy fa-5x"/>
+                      <label col="0" row="0" text="Achieve"
                       fontSize="40"
                       horizontalAlignment="center"
                       color="white"
@@ -161,10 +171,10 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
                     <listView items="{feed}"> 
                     <Template let:item>
                         <stackLayout class="list-background">
-                            <gridLayout columns="50, auto, *" rows="*, *">
+                            <gridLayout columns="65, auto, *" rows="57">
                                 <image  col="0" row="0" src="{item.avatar}" class="-thumb img-circle"/>
-                                <label fontWeight="bold" col="1" row="0" text="{item.user}:" fontSize="18"/>
-                                <label col="2" row="0" text="{item.postBody}" fontSize="18" textWrap="true"/>
+                                <label fontWeight="bold" col="1" row="0" text="{item.user}" fontSize="14"/>
+                                <label col="2" row="0" text="{item.postBody}" fontSize="13" textWrap="true"/>
                             </gridLayout>
                             {#if item.imageURL}
                             <stackLayout height="300" >
@@ -178,11 +188,10 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
                             </stackLayout>
 
                             {/if}
-                                <gridLayout columns="*, 60, 50" rows="20">
-                                    <label col="0" text="{item.comments.length} comments" />
-                                    <label class ="pull-left" col="1" text="Comment" />
-                                    <image  col="2" row="0" on:tap={() => navigate({ page: Comments, props: {postId: item.postId, imageURL: item.imageURL}})}  src="font://&#xf27a;" class="far fa-comment-alt" />
-
+                                <gridLayout columns="*, 60, 50" rows="22">
+                                    <label col="0" text="{item.comments.length} comments" class="commentNum"/>
+                                    <label col="1" text="Comment" class="commentButton"/>
+                                    <image col="2" row="0" on:tap={() => navigate({ page: Comments, props: {postId: item.postId, imageURL: item.imageURL}})}  src="font://&#xf27a;" class="far fa-comment-alt" />
                                 </gridLayout>
                             
                             <!-- <button on:tap={() => navigate({ page: Comments, props: {postId: item.postId}})}  text="Comments" class="button-comments"/> -->
