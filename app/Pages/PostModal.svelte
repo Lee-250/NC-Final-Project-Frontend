@@ -118,7 +118,7 @@ let value = 0;
         </stackLayout>
     <stackLayout  flexDirection="column">
         <label text="Miles completed"  textAlign="center" color="white" fontWeight="bold" fontSize="34" />
-        <slider minValue=0 maxValue=30 bind:value="{value}" />
+        <slider minValue=0 maxValue=30 bind:value="{value}" color="white"/>
         <label text="{Math.floor(value) }" color="white" fontWeight="bold" fontSize="34"/>
         <button on:tap={() => addUpdate(textFromUser)} text="Submit" class="button" />
     </stackLayout>
