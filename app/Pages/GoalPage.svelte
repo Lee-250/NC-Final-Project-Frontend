@@ -123,7 +123,7 @@ import { itemsLayoutProperty } from '@nativescript/core/ui/repeater';
     background-color: rgb(255, 255, 255);
     color: black;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     border-radius: 50%;
     width: 140;
   }
