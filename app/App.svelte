@@ -37,7 +37,7 @@
     background-color: white;
     color: black;
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
     border-radius: 50%;
     position: center;
   }

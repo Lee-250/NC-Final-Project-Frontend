@@ -42,74 +42,91 @@
 </script>
     
 <style>
-    .figure {
+    .figure {           
+            /* text-align: center; */
+            margin-left: 30;
+            font-size:70%;
+        }
+        .figure2 {
+            margin-left: 70;
+            font-size:70%;
+        }
+        .week-streak {
+            margin-left: 30;
+        }
+        .total-miles {
+            margin-left: 28;
+        }
+        .goal-progressbar {
+            height: 30;
+            margin: 10;
+            border-radius: 3;
+            border-color: black;
+            border-width: 1.5;
+            margin-bottom: 20;
+        }
+        .goal-progressbar-value {
+            background: white;
+            border-radius: 3;
         
-        /* text-align: center; */
-        margin-left: 30;
-        font-size:70%;
-    }
-    .figure2 {
-        margin-left: 70;
-        font-size:70%;
-    }
-    .week-streak {
-        margin-left: 30;
-    }
-    .total-miles {
-        margin-left: 28;
-    }
-    .progressbar {
-        height: 20;
-        margin: 10;
-        border-radius: 10;
-        border-color: black;
-        border-width: 2;
-        margin-bottom: 50;
-    }
-    .progressbar-value {
-        background: #33ff00;
-        border-radius: 10;
-    
-    }
-    .week {
-        margin-left: 30;
-    }
-    .list-background {
-        background-color: rgb(255, 255, 255);
-        border: 10px;
-        border-radius: 35%;
-        /* flex: auto; */
-        /* margin-bottom: 20;
-        margin-top: 10; */
+        }
+
+        .progressbar {
+            height: 30;
+            margin: 10;
+            border-radius: 3;
+            border-color: black;
+            border-width: 2;
+            margin-bottom: 20;
+        }
+        .progressbar-value {
+            background: goldenrod;
+            border-radius: 3;
         
-    }
-    .layout {
-        background-image: url("~/Images/Timber.jpg");
-        background-position: left;
-    }
-    .button-comments {
-        background-color: rgb(255, 255, 255);
-        border-style: solid;
-        border-width: 5px;
-        border-color: black;
-        color: black;
-        text-align: center;
-        font-size: 16px;
-        border-radius: 50%;
-        margin-left: 230;
-        width: 110;
-    }
-    .button-post {
-        background-color: rgb(255, 255, 255);
-        color: black;
-        text-align: center;
-        font-size: 16px;
-        border-radius: 50%;
-        width: 140;
-    }
-    .grid-layout {
-        margin-top: 22;
-    }
+        }
+        
+        .week {
+            margin-left: 30;
+        }
+        .list-background {
+            background-color: rgb(255, 255, 255);
+            border: 10px;
+            border-radius: 20%;
+            /* flex: auto; */
+            /* margin-bottom: 20;
+            margin-top: 10; */
+            
+        }
+        .layout {
+            background-image: url("~/Images/Timber.jpg");
+            background-position: left;
+        }
+        .button-comments {
+    background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 50%;
+    margin-left: 230;
+    width: 110;
+  }
+
+  .button-post {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 140;
+  }
+
+  .grid-layout {
+      margin-top: 22;
+  }
+  
 </style>
 
 <page >
@@ -127,7 +144,7 @@
             </tabStrip>
             <tabContentItem class="layout">
                 <stackLayout >
-                    <gridLayout columns="250, 150" rows="40, 40" class="grid-layout">
+                    <gridLayout columns="250, 150" rows="40, 30" class="grid-layout">
                       <button on:tap="{() => {openModal()}}"text="Post" class="button-post" col="1" row="0"></button>
                       <label col="0" row="0" text="Achieve 🏆"
                       fontSize="40"
@@ -135,6 +152,23 @@
                       color="white"
                       fontWeight="bold" />
                     </gridLayout>
+                    <stackLayout>
+                        <label  text="Cycle 30 miles per week"
+                      fontSize="20"
+                      horizontalAlignment="center"
+                      color="white"
+                      fontWeight="bold"
+                      margin-top="10" />
+                      
+                    </stackLayout>
+                    <gridLayout columns="{setProgressBarWidth(30)}" class="goal-progressbar">                                                                 
+                        <stackLayout  col="0" class="goal-progressbar-value">
+                       <label verticalAlignment="center" class="text-center" text="Day 10" />
+                       </stackLayout>
+                       <stackLayout col="1">
+                        <label verticalAlignment="center" class="text-center" text="Only 20 days to go!" />
+                       </stackLayout>
+                     </gridLayout>
                     <listView items="{feed}"> 
                     <Template let:item>
                         <stackLayout class="list-background">
@@ -178,10 +212,15 @@
                                 <label fontWeight="bold" col="1" row="0" text="{item.username}" fontSize="22"/>
                             </gridLayout>
                             <stackLayout height="290">
+
                                 <label class="week" text="Miles completed this week: {item.progress}" fontSize="22"/>
                                 <gridLayout columns="{setProgressBarWidth((item.progress/50) * 100)}" class="progressbar">                                                                 
+
                                      <stackLayout  col="0" class="progressbar-value">
-                                    <label col="0" text="test" />
+                                    <label class="text-center" col="0" text="{item.milesCompletedThisWeek} miles" />
+                                    </stackLayout>
+                                    <stackLayout col="1" >
+                                        <label class="text-center" text="only {30 - item.milesCompletedThisWeek} to go" />
                                     </stackLayout>
                                   </gridLayout>
                                   <gridLayout columns="*, *" rows="30, *">
