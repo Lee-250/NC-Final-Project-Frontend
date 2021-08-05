@@ -35,10 +35,7 @@ let value = 0;
 
 </script>
 <style>
-    stackLayout {
-        padding: 20;
-    }
-
+ 
     label {
         font-size: 25;
         text-align: center;
@@ -46,18 +43,46 @@ let value = 0;
 
     .post-background {
         background-image: url("~/Images/Timber.jpg");
+        padding: 20;
     }
-    .content-background {
-            background-color: honeydew;
-            border: 5;
-            margin: 5px;
-            border-radius: 5;
-        }
 
     .post-buttons {
         background-color: honeydew;
         border-radius: 5;
     }     
+    .button {
+  display: inline-block;
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-size: 28px;
+  border-radius: 60px;
+  margin-left: 60;
+  margin-right: 60;
+}
+.button-photo {
+  display: inline-block;
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-size: 28px;
+  border-radius: 60px;
+  margin-bottom: 70;
+  margin-left: 60;
+  margin-right: 60;
+}
+.post-update {
+    background-color: white;
+    border-color: black;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 70;
+    margin-left: 20;
+}
+
+/* .post-picture {
+    margin-right: 30;
+} */
 
 </style>
 
@@ -65,15 +90,15 @@ let value = 0;
 
 
 <page>
-    <stackLayout  class="post-background" flexDirection="column">
-        <stackLayout class="content-background">
+    <stackLayout class="post-background" >
+        <stackLayout >
 
         
-    <label text="Create a post" textAlign="center" />
-    <textField hint="post an update" class="-border" bind:text="{textFromUser}"></textField>
-    <label text="Post a picture"   />
-    <stackLayout  height="250" >
-        <scrollView orientation="horizontal">
+    <label text="Create a post" textAlign="center" color="white" fontWeight="bold" fontSize="34"/>
+    <textField hint="start typing" class="post-update" textFieldHintColor="white" fontSize="25" bind:text="{textFromUser}" ></textField>
+    <stackLayout  height="260" >
+        <!-- <label text="Post a picture" color="white" fontWeight="bold" fontSize="34" /> -->
+        <scrollView orientation="horizontal" >
             <stackLayout orientation="horizontal" >
                 
                     <image src="https://i.guim.co.uk/img/media/3b985a7e7023d27de64cf7b0307e3c47e23d5d0b/800_492_3646_2187/master/3646.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=acf1c4feefa6ef880fe497e8c3258700"/>
@@ -87,17 +112,15 @@ let value = 0;
             </stackLayout>
             
         </scrollView>
-        
     </stackLayout>
-    
     <stackLayout>
-        <button on:tap={() => sendImageURL()} text="Select Photo" />
-    </stackLayout>
+        <button on:tap={() => sendImageURL()} text="Select Photo" class="button-photo"/>
+        </stackLayout>
     <stackLayout  flexDirection="column">
-        <label text="Miles completed"  textAlign="center" />
-        <slider minValue=0 maxValue=30 bind:value="{value}" />
-        <label text="{Math.floor(value) }" />
-        <button on:tap={() => addUpdate(textFromUser)} text="Submit" ></button>
+        <label text="Miles completed"  textAlign="center" color="white" fontWeight="bold" fontSize="34" />
+        <slider minValue=0 maxValue=30 bind:value="{value}" color="white"/>
+        <label text="{Math.floor(value) }" color="white" fontWeight="bold" fontSize="34"/>
+        <button on:tap={() => addUpdate(textFromUser)} text="Submit" class="button" />
     </stackLayout>
     </stackLayout>
 </page>
