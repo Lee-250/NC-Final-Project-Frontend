@@ -10,9 +10,9 @@
     let textFromUser = '';
     const addUpdate = async (textFromUser): Promise<void> => {
         let post = {
-            user: 'Lee', 
+            user: 'John', 
             postBody: textFromUser,
-            avatar: "https://i.imgur.com/DSuXVcf.jpg",
+            avatar: "https://i.imgur.com/4zxIRRj.jpg",
             imageURL: imageURL
         }
         const response = await axios.put("https://us-central1-final-project-backend-16738.cloudfunctions.net/app/goals/tJgU7tw7OYIlQ88spYlt/feed", post)
@@ -93,8 +93,7 @@
         <scrollView orientation="horizontal" >
             <stackLayout orientation="horizontal" >
                 
-                    <image src="https://i.guim.co.uk/img/media/3b985a7e7023d27de64cf7b0307e3c47e23d5d0b/800_492_3646_2187/master/3646.jpg?width=445&quality=45&auto=format&fit=max&dpr=2&s=acf1c4feefa6ef880fe497e8c3258700"/>
-                    <stackLayout></stackLayout>
+                    
                     <image src="https://www.ride25.com/wp-content/uploads/2014/03/tired-racer-ride-25.jpg"/>
                     <stackLayout></stackLayout>
                     <image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC7MYEGTlm5cxtWNfIAn7WJL1635u4pmmZUzZVTnHRBYT6_xHatIsqwKvpdHX1alMVKoU&usqp=CAU"/>

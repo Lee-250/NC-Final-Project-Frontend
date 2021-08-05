@@ -32,6 +32,7 @@
         });    
         const {data}  = await devApi.get('/feed');
         feed = data;
+        users[3].progress = 40
     }
      
     const setProgressBarWidth = (percent) => {
