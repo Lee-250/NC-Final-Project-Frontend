@@ -62,7 +62,7 @@
             height: 30;
             margin: 10;
             border-radius: 3;
-            border-color: black;
+            border-color: grey;
             border-width: 1.5;
             margin-bottom: 20;
         }
@@ -81,7 +81,7 @@
             margin-bottom: 20;
         }
         .progressbar-value {
-            background: goldenrod;
+            background: gold;
             border-radius: 3;
         
         }
@@ -174,12 +174,12 @@
                       margin-top="10" />
                       
                     </stackLayout>
-                    <gridLayout columns="{setProgressBarWidth(30)}" class="goal-progressbar">                                                                 
+                    <gridLayout columns="{setProgressBarWidth(57)}" class="goal-progressbar">                                                                 
                         <stackLayout  col="0" class="goal-progressbar-value">
-                       <label verticalAlignment="center" class="text-center" text="Day 10" />
+                       <label verticalAlignment="center" class="text-center" text="Day 16" />
                        </stackLayout>
                        <stackLayout col="1">
-                        <label verticalAlignment="center" class="text-center" text="Only 20 days to go!" />
+                        <label verticalAlignment="center" class="text-center" text="Only 12 days to go!" />
                        </stackLayout>
                      </gridLayout>
                     <listView items="{feed}"> 
@@ -195,8 +195,14 @@
                                 <scrollView orientation="horizontal">
                                     <stackLayout orientation="horizontal" >
                                         <image src="{item.imageURL}"/>
-                                        <!-- <image src="{item.picture}"/>
-                                        <image src="{item.picture}"/> -->
+                                        <stackLayout></stackLayout>
+                                        <stackLayout></stackLayout>
+                                        <stackLayout></stackLayout>
+                                        <stackLayout></stackLayout>
+                                        <stackLayout></stackLayout>
+                                        <stackLayout></stackLayout>
+                                        <!-- added above stacklayouts to cause gap between pictures -->
+                                        <image src="{item.secondImageURL}"/>
                                     </stackLayout>
                                 </scrollView>
                             </stackLayout>
@@ -225,14 +231,14 @@
                             </gridLayout>
                             <stackLayout height="290">
 
-                                <label class="week" text="Miles completed this week: {item.progress}" fontSize="22"/>
+                                <label class="week" text="Week:  3" fontSize="22"/>
                                 <gridLayout columns="{setProgressBarWidth((item.progress/50) * 100)}" class="progressbar">                                                                 
 
                                      <stackLayout  col="0" class="progressbar-value">
-                                    <label class="text-center" col="0" text="{item.milesCompletedThisWeek} miles" />
+                                    <label class="text-center" col="0" text="{item.progress} miles" />
                                     </stackLayout>
                                     <stackLayout col="1" >
-                                        <label class="text-center" text="only {30 - item.milesCompletedThisWeek} to go" />
+                                        <label class="text-center" text="only {50 - item.progress} to go!" />
                                     </stackLayout>
                                   </gridLayout>
                                   <gridLayout columns="*, *" rows="30, *">
