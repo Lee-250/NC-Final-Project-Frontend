@@ -1,7 +1,9 @@
 <script lang="typescript">
   import axios from 'axios/dist/axios';
 
+
   const { closeModal }=require("svelte-native");
+
 
   export let loggedInUser;
   export let users;
@@ -80,6 +82,7 @@
       <textField hint="start typing..." height="50" class="post-update" bind:text="{textFromUser}" ></textField>
       <stackLayout  height="260" >
         <scrollView orientation="horizontal" >
+
           <stackLayout orientation="horizontal" >    
             <image src="https://www.ride25.com/wp-content/uploads/2014/03/tired-racer-ride-25.jpg"/>
             <stackLayout></stackLayout>
@@ -101,12 +104,3 @@
     </stackLayout>
   </stackLayout>
 </page>
-
-
-
-
-
-
-
-
-

@@ -5,6 +5,7 @@
   let someDate: Date;
   let goalTitle: string;
   let selectedCategory: string;
+  let goalMiles: number;
 
   const items = ["Health", "Fitness", "Skill", "Social", "Career"] 
  
